@@ -1,6 +1,7 @@
 import Cover from "@/components/Cover";
 import Info from "@/components/Info";
 import Navbar from "@/components/Navbar";
+import Scheme from "@/components/Scheme";
 import Video from "@/components/Video";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
         <Cover />
         <Info />
         <Video />
+        <Scheme />
       </main>
     </>
   );

@@ -64,7 +64,9 @@ function Info() {
             <div className="flex-1 basis-1/3"></div>
 
             <div className="flex-col min-w-2/3 justify-start items-start">
-              <Button variant="blue">смотреть весь фотоотчёт</Button>
+              <Button shadowEnabled={false} variant="blue">
+                смотреть весь фотоотчёт
+              </Button>
             </div>
           </div>
         </div>

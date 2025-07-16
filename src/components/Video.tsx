@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { fluxgore, gothampro } from "@/utils/fonts";
 
 interface VideoStatsProps {
@@ -25,7 +26,7 @@ function VideoStats(props: VideoStatsProps) {
 function Video() {
   return (
     <div
-      className="bg-[#161616] relative overflow-hidden"
+      className="bg-[#161616] relative overflow-hidden pt-20"
       style={{
         backgroundImage: `url('/images/noise.svg')`,
         backgroundSize: "cover",
@@ -33,6 +34,12 @@ function Video() {
         backgroundBlendMode: "overlay",
       }}
     >
+      <img
+        className="absolute top-0 object-cover"
+        src="/images/video/arrows.svg"
+        alt="Lines"
+      />
+
       <div className="container mx-auto">
         <div className="flex flex-row space-x-16">
           <div className={fluxgore.className}>
@@ -64,7 +71,7 @@ function Video() {
           ></iframe>
         </div>
 
-        <div className="grid grid-cols-4 gap-24 mt-36 pb-32">
+        <div className="grid grid-cols-4 gap-24 mt-36 pb-64">
           <VideoStats number="260" label="[ единиц техники ]" />
           <VideoStats
             number="11"
@@ -77,6 +84,12 @@ function Video() {
           />
         </div>
       </div>
+
+      <img
+        className="absolute bottom-0"
+        src="/images/video/paper_tear.png"
+        alt="Paper tear"
+      />
     </div>
   );
 }
