@@ -43,13 +43,16 @@ export default function Button(props: ButtonProps) {
         {/* Button */}
         <button
           className={`${getButtonStyles()} inline-block relative transition-all duration-150 ease-in-out ${
-            shadowEnabled ? "active:translate-x-1 active:translate-y-1" : ""
+            shadowEnabled
+              ? "active:translate-x-1 active:translate-y-1"
+              : "hover:scale-105 active:scale-95"
           } ${props.className}`}
           onClick={props.onClick}
           style={{
             fontSize: "18px",
             lineHeight: "1.2",
             padding: "20px 40px",
+            minWidth: "280px",
             clipPath:
               "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)",
             border: "none",

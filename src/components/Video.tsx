@@ -35,7 +35,7 @@ function Video() {
       }}
     >
       <img
-        className="absolute top-0 object-cover"
+        className="absolute top-0 right-0 object-cover"
         src="/images/video/arrows.svg"
         alt="Lines"
       />
@@ -86,7 +86,7 @@ function Video() {
       </div>
 
       <img
-        className="absolute bottom-0"
+        className="absolute bottom-0 object-cover"
         src="/images/video/paper_tear.png"
         alt="Paper tear"
       />

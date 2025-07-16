@@ -73,7 +73,7 @@ function DateBox() {
         className="bg-white text-black px-6 py-2 inline-block"
         style={{
           transform: "skewX(-15deg)",
-          fontSize: "2.5vw", // Changed from 40px to 2.5vw
+          fontSize: "2vw", // Changed from 40px to 2.5vw
           lineHeight: "1.2",
           filter: `
             drop-shadow(8px 8px 0px black)
@@ -98,9 +98,9 @@ function Cover() {
       className="bg-cover bg-center bg-no-repeat relative justify-center items-center py-36"
       style={{ backgroundImage: "url('/images/cover.svg')" }}
     >
-      <div className="container mx-auto max-w-5/6 mb-24">
+      <div className="container mx-auto max-w-5/7 mb-24">
         {/* Top row with ФЕСТИВАЛЬ and date box */}
-        <div className="flex items-center" style={{ gap: "40px" }}>
+        <div className="flex flex-row items-center space-x-16">
           <CoverHeading>ФЕСТИВАЛЬ</CoverHeading>
           <DateBox />
         </div>
