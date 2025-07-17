@@ -1,3 +1,4 @@
+import Activities from "@/components/Activities";
 import Cover from "@/components/Cover";
 import Events from "@/components/Events";
 import Info from "@/components/Info";
@@ -15,6 +16,7 @@ export default function Home() {
         <Video />
         <Scheme />
         <Events />
+        <Activities />
       </main>
     </>
   );

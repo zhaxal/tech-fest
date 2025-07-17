@@ -97,7 +97,7 @@ function Scheme() {
           </Button>
         </div>
 
-        <div className="flex flex-row mt-14 space-x-12 justify-center">
+        <div className="flex flex-row mt-14 space-x-12 justify-center min-h-10">
           {venues.map((venue) => (
             <SchemeSelect
               key={venue.name}

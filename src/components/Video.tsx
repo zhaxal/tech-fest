@@ -42,17 +42,17 @@ function Video() {
 
       <div className="container mx-auto">
         <div className="flex flex-row space-x-16">
-          <div className={fluxgore.className}>
-            <h1 className="text-7xl text-white relative">как это Было</h1>
-          </div>
+          <h1 className={`${fluxgore.className} text-7xl text-white relative`}>
+            как это Было
+          </h1>
 
-          <div className={gothampro.className}>
-            <p className="text-[#E6E6E6] opacity-90 text-xl max-w-[536px] leading-none">
-              Прошлый фестиваль технических видов спорта стал незабываемым
-              праздником скорости и мастерства, собрав рекордное количество
-              участников и зрителей.
-            </p>
-          </div>
+          <p
+            className={`${gothampro.className} text-[#E6E6E6] opacity-90 text-xl max-w-[536px] leading-none`}
+          >
+            Прошлый фестиваль технических видов спорта стал незабываемым
+            праздником скорости и мастерства, собрав рекордное количество
+            участников и зрителей.
+          </p>
         </div>
 
         <div className="flex mt-14">
