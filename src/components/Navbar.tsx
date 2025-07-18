@@ -14,7 +14,7 @@ function Navbar() {
     <nav className="absolute top-0 left-0 w-full bg-[#0D0D0D] text-white px-2 z-50">
       <div className="container min-h-20 mx-auto flex justify-between items-center">
         <img
-          src="/images/tech_logo.svg"
+          src="/logos/tech_logo.svg"
           alt="Tech Fest Logo"
           className="h-8 md:h-10"
         />
