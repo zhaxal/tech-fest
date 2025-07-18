@@ -6,12 +6,17 @@ interface ButtonProps {
   className?: string;
   variant?: "default" | "blue" | "blue_alt";
   shadowEnabled?: boolean;
+  disabled?: boolean;
 }
 
 export default function Button(props: ButtonProps) {
-  const { variant = "default", shadowEnabled = true } = props;
+  const { variant = "default", shadowEnabled = true, disabled = false } = props;
 
   const getButtonStyles = () => {
+    if (disabled) {
+      return "bg-gray-300 text-gray-500 cursor-not-allowed";
+    }
+
     switch (variant) {
       case "blue":
         return "bg-[#1068B0] text-white hover:bg-[#0e5a9c]";
@@ -25,7 +30,7 @@ export default function Button(props: ButtonProps) {
   return (
     <div className={`${fluxgore.className} relative inline-block`}>
       {/* Shadow element */}
-      {shadowEnabled && (
+      {shadowEnabled && !disabled && (
         <div
           className="absolute bg-black transition-all duration-150 ease-in-out"
           style={{
@@ -42,11 +47,14 @@ export default function Button(props: ButtonProps) {
       {/* Button */}
       <button
         className={`${getButtonStyles()} inline-block relative transition-all duration-150 ease-in-out ${
-          shadowEnabled
+          shadowEnabled && !disabled
             ? "active:translate-x-1 active:translate-y-1"
-            : "hover:scale-105 active:scale-95"
+            : !disabled
+            ? "hover:scale-105 active:scale-95"
+            : ""
         } ${props.className}`}
-        onClick={props.onClick}
+        onClick={disabled ? undefined : props.onClick}
+        disabled={disabled}
         style={{
           fontSize: "18px",
           lineHeight: "1.2",
@@ -58,7 +66,7 @@ export default function Button(props: ButtonProps) {
           zIndex: 1,
         }}
         onMouseEnter={
-          shadowEnabled
+          shadowEnabled && !disabled
             ? (e) => {
                 const shadow = e.currentTarget
                   .previousElementSibling as HTMLElement;
@@ -72,7 +80,7 @@ export default function Button(props: ButtonProps) {
             : undefined
         }
         onMouseLeave={
-          shadowEnabled
+          shadowEnabled && !disabled
             ? (e) => {
                 const shadow = e.currentTarget
                   .previousElementSibling as HTMLElement;
@@ -86,7 +94,7 @@ export default function Button(props: ButtonProps) {
             : undefined
         }
         onMouseDown={
-          shadowEnabled
+          shadowEnabled && !disabled
             ? (e) => {
                 const shadow = e.currentTarget
                   .previousElementSibling as HTMLElement;
@@ -100,7 +108,7 @@ export default function Button(props: ButtonProps) {
             : undefined
         }
         onMouseUp={
-          shadowEnabled
+          shadowEnabled && !disabled
             ? (e) => {
                 const shadow = e.currentTarget
                   .previousElementSibling as HTMLElement;

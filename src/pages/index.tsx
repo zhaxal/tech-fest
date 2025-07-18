@@ -1,29 +1,9 @@
-import Activities from "@/components/Activities";
-import Cover from "@/components/Cover";
-import Events from "@/components/Events";
-import Footer from "@/components/Footer";
-import Info from "@/components/Info";
-import Map from "@/components/Map";
-import Navbar from "@/components/Navbar";
-import Partners from "@/components/Partners";
-import Scheme from "@/components/Scheme";
-import Video from "@/components/Video";
+import { CoverSoon } from "@/components/Cover";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <main className="flex-col min-h-full">
-        <Cover />
-        <Info />
-        <Video />
-        <Scheme />
-        <Events />
-        <Activities />
-        <Partners />
-        <Map />
-      </main>
-      <Footer />
+      <CoverSoon />
     </>
   );
 }

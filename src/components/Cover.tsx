@@ -119,4 +119,31 @@ function Cover() {
   );
 }
 
+function CoverSoon() {
+  return (
+    <div
+      className="bg-cover bg-center bg-no-repeat relative justify-center items-center py-36"
+      style={{ backgroundImage: "url('/images/cover.svg')" }}
+    >
+      <div className="container mx-auto max-w-5/7 mb-24">
+        {/* Top row with ФЕСТИВАЛЬ and date box */}
+        <div className="flex flex-row items-center space-x-16">
+          <CoverHeading>ФЕСТИВАЛЬ</CoverHeading>
+          <DateBox />
+        </div>
+
+        <CoverHeading textPosition="right">ТЕХНИЧЕСКИХ</CoverHeading>
+
+        <CoverHeading>ВИДОВ СПОРТА</CoverHeading>
+      </div>
+
+      <div className="flex justify-center items-center">
+        <Button disabled>скоро</Button>
+      </div>
+    </div>
+  );
+}
+
+export { CoverSoon };
+
 export default Cover;
