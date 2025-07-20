@@ -1,10 +1,12 @@
 import localfont from "next/font/local";
 
 const fluxgore = localfont({
-  src: "../fonts/fluxgore/fluxgore_italic.otf",
+  src: "../fonts/FLUXGORE/fluxgore_italic.otf",
   weight: "400",
   style: "italic",
 });
+
+
 
 const gothampro = localfont({
   src: [
