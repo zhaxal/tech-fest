@@ -10,12 +10,14 @@ function VideoStats(props: VideoStatsProps) {
   const { number, label } = props;
   return (
     <div className="flex flex-col">
-      <h1 className={`${fluxgore.className} text-8xl text-[#1068B0] relative`}>
+      <h1
+        className={`${fluxgore.className} text-4xl md:text-8xl text-[#1068B0] relative`}
+      >
         {number}
       </h1>
 
       <p
-        className={`${gothampro.className} text-[#E6E6E6] text-xl max-w-[536px] leading-normal uppercase`}
+        className={`${gothampro.className} text-[#E6E6E6] text-sm md:text-xl max-w-[536px] leading-normal uppercase`}
       >
         {label}
       </p>
@@ -26,7 +28,7 @@ function VideoStats(props: VideoStatsProps) {
 function Video() {
   return (
     <div
-      className="bg-[#161616] relative overflow-hidden pt-20"
+      className="bg-[#161616] relative overflow-hidden pt-10 md:pt-20"
       style={{
         backgroundImage: `url('/images/noise.svg')`,
         backgroundSize: "cover",
@@ -40,14 +42,16 @@ function Video() {
         alt="Lines"
       />
 
-      <div className="container mx-auto">
-        <div className="flex flex-row space-x-16">
-          <h1 className={`${fluxgore.className} text-7xl text-white relative`}>
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-16">
+          <h1
+            className={`${fluxgore.className} text-4xl md:text-7xl text-white relative`}
+          >
             как это Было
           </h1>
 
           <p
-            className={`${gothampro.className} text-[#E6E6E6] opacity-90 text-xl max-w-[536px] leading-none`}
+            className={`${gothampro.className} text-[#E6E6E6] opacity-90 text-base md:text-xl max-w-full md:max-w-[536px] leading-relaxed md:leading-none`}
           >
             Прошлый фестиваль технических видов спорта стал незабываемым
             праздником скорости и мастерства, собрав рекордное количество
@@ -55,7 +59,7 @@ function Video() {
           </p>
         </div>
 
-        <div className="flex mt-14">
+        <div className="flex mt-8 md:mt-14">
           <iframe
             src="https://www.youtube.com/embed/FVzlAMLPFh0?si=E_EaXkQ3tJYtyf_s"
             title="YouTube video player"
@@ -66,12 +70,12 @@ function Video() {
             className="w-full h-auto aspect-video"
             style={{
               clipPath:
-                "polygon(60px 0, 100% 0, 100% calc(100% - 60px), calc(100% - 60px) 100%, 0 100%, 0 60px)",
+                "polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px)",
             }}
           ></iframe>
         </div>
 
-        <div className="grid grid-cols-4 gap-24 mt-36 pb-64">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-24 mt-16 md:mt-36 pb-32 md:pb-64">
           <VideoStats number="260" label="[ единиц техники ]" />
           <VideoStats
             number="11"
@@ -86,7 +90,7 @@ function Video() {
       </div>
 
       <img
-        className="absolute bottom-0 object-cover"
+        className="absolute bottom-0 object-cover w-full"
         src="/images/video/paper_tear.png"
         alt="Paper tear"
       />

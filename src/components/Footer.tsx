@@ -4,13 +4,19 @@ import Link from "next/link";
 /* eslint-disable @next/next/no-img-element */
 function Footer() {
   return (
-    <footer className="bg-[#0D0D0D] py-36 ">
-      <div className="container mx-auto flex flex-col space-y-9">
-        <div className="flex flex-row justify-between items-center">
-          <div className="flex flex-col space-y-16">
-            <img src="/logos/tech_logo_text.svg" alt="Tech Fest Logo" />
+    <footer className="bg-[#0D0D0D] py-16 md:py-36">
+      <div className="container mx-auto px-4 flex flex-col space-y-9">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-start space-y-8 md:space-y-0">
+          {/* Logo and Social Links */}
+          <div className="flex flex-row md:flex-col md:space-y-16 space-x-16">
+            <img
+              src="/logos/tech_logo_text.svg"
+              alt="Tech Fest Logo"
+              className="w-32 md:w-auto"
+            />
 
-            <ul className="hidden md:flex space-x-2 items-center">
+            {/* Social Links - visible on all screen sizes */}
+            <ul className="flex space-x-2 items-center">
               <li>
                 <Link
                   href="https://t.me/your_channel"
@@ -59,106 +65,114 @@ function Footer() {
             </ul>
           </div>
 
-          <div className="flex flex-col space-y-7">
-            <h3 className={`${fluxgore.className} text-[18px] text-[#E6E6E6]`}>
-              ПЛОЩАДКИ
-            </h3>
-
-            <div className="flex flex-col space-y-2">
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+          {/* Navigation Columns - Stack on mobile, side by side on desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex flex-col space-y-4 md:space-y-7">
+              <h3
+                className={`${fluxgore.className} text-base md:text-[18px] text-[#E6E6E6]`}
               >
-                YUKA Drive Fest
-              </Link>
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-              >
-                ЭКСПО
-              </Link>
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-              >
-                Мотокросс
-              </Link>
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-              >
-                Дрифт Битва за Москву
-              </Link>
+                СОБЫТИЯ
+              </h3>
+              <div className="flex flex-col space-y-2">
+                <Link
+                  href="/#cover"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  YUKA Drive Fest
+                </Link>
+                <Link
+                  href="/#cover"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  ЭКСПО
+                </Link>
+                <Link
+                  href="/#cover"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  Мотокросс
+                </Link>
+                <Link
+                  href="/#cover"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  Дрифт Битва за Москву
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col space-y-7">
-            <h3 className={`${fluxgore.className} text-[18px] text-[#E6E6E6]`}>
-              ПЛОЩАДКИ
-            </h3>
 
-            <div className="flex flex-col space-y-2">
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+            <div className="flex flex-col space-y-4 md:space-y-7">
+              <h3
+                className={`${fluxgore.className} text-base md:text-[18px] text-[#E6E6E6]`}
               >
-                YUKA Drive Fest
-              </Link>
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-              >
-                ЭКСПО
-              </Link>
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-              >
-                Мотокросс
-              </Link>
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-              >
-                Дрифт Битва за Москву
-              </Link>
+                ИНФОРМАЦИЯ
+              </h3>
+              <div className="flex flex-col space-y-2">
+                <Link
+                  href="/#about"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  О фестивале
+                </Link>
+                <Link
+                  href="/#program"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  Программа
+                </Link>
+                <Link
+                  href="/#tickets"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  Билеты
+                </Link>
+                <Link
+                  href="/#contacts"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  Контакты
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col space-y-7">
-            <h3 className={`${fluxgore.className} text-[18px] text-[#E6E6E6]`}>
-              ПЛОЩАДКИ
-            </h3>
 
-            <div className="flex flex-col space-y-2">
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+            <div className="flex flex-col space-y-4 md:space-y-7">
+              <h3
+                className={`${fluxgore.className} text-base md:text-[18px] text-[#E6E6E6]`}
               >
-                YUKA Drive Fest
-              </Link>
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-              >
-                ЭКСПО
-              </Link>
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-              >
-                Мотокросс
-              </Link>
-              <Link
-                href="/#cover"
-                className={`${gothampro.className} text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-              >
-                Дрифт Битва за Москву
-              </Link>
+                УЧАСТИЕ
+              </h3>
+              <div className="flex flex-col space-y-2">
+                <Link
+                  href="/#registration"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  Регистрация
+                </Link>
+                <Link
+                  href="/#sponsors"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  Партнеры
+                </Link>
+                <Link
+                  href="/#media"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  Пресса
+                </Link>
+                <Link
+                  href="/#volunteer"
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                >
+                  Волонтерство
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
         <p
-          className={`${gothampro.className} text-[18px] text-[#E6E6E6] opacity-40`}
+          className={`${gothampro.className} text-sm md:text-[18px] text-[#E6E6E6] opacity-40 text-center md:text-left`}
         >
           © 2025 АНО &quot;СОК&quot;
         </p>

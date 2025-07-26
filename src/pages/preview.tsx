@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Activities from "@/components/Activities";
 import Cover from "@/components/Cover";
 import Events from "@/components/Events";
@@ -17,7 +18,7 @@ export default function Home() {
         <Cover />
         <Info />
         <Video />
-        <Scheme />
+        {/* <Scheme /> */}
         <Events />
         <Activities />
         <Partners />

@@ -22,7 +22,7 @@ function SwiperButton({
       onClick={onClick}
       disabled={disabled}
       className={`
-        w-12 h-12 
+        w-10 h-10 sm:w-12 sm:h-12 
         border border-gray-200 
         transition-colors duration-200
         flex items-center justify-center
@@ -35,19 +35,19 @@ function SwiperButton({
       `}
       aria-label={direction === "next" ? "Next slide" : "Previous slide"}
     >
-      <img src={iconPath} alt="" className={`w-5 h-5`} />
+      <img src={iconPath} alt="" className={`w-4 h-4 sm:w-5 sm:h-5`} />
     </button>
   );
 }
 
 function Slide({ title, imageSrc }: { title: string; imageSrc: string }) {
   return (
-    <div className="flex flex-col bg-[#1068B0] py-6 px-3.5 relative">
-      <h2 className={`${fluxgore.className} text-4xl text-white leading-none`}>
+    <div className="flex flex-col bg-[#1068B0] py-4 px-3 sm:py-6 sm:px-3.5 relative">
+      <h2 className={`${fluxgore.className} text-2xl sm:text-3xl lg:text-4xl text-white leading-none`}>
         {title}
       </h2>
       <img
-        className="w-full h-auto object-cover mt-7"
+        className="w-full h-auto object-cover mt-4 sm:mt-7"
         src={imageSrc}
         alt="Slide Image"
       />
@@ -86,16 +86,16 @@ function Activities() {
   };
 
   return (
-    <div className="bg-[#F4F4F4] relative pt-20 pb-32">
-      <div className="container mx-auto">
-        <div className="flex flex-row justify-between items-center">
+    <div className="bg-[#F4F4F4] relative pt-12 pb-16 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-32">
+      <div className="container mx-auto px-4">
+        <div className="flex space-y-6 flex-row sm:justify-between sm:items-center sm:space-y-0">
           <h1
-            className={`${fluxgore.className} text-7xl text-[#060606] relative`}
+            className={`${fluxgore.className} text-3xl sm:text-5xl lg:text-7xl text-[#060606] relative max-w-2xs md:max-w-full`}
           >
             Активности фестиваля
           </h1>
 
-          <div className="flex items-center space-x-5">
+          <div className="flex items-center justify-center space-x-3 sm:space-x-5">
             <SwiperButton
               onClick={handlePrevious}
               direction="prev"
@@ -110,11 +110,11 @@ function Activities() {
         </div>
       </div>
 
-      <div className="container mx-auto overflow-visible">
-        <div className="mt-16 overflow-visible">
+      <div className="container mx-auto px-4 overflow-visible">
+        <div className="mt-8 sm:mt-12 lg:mt-16 overflow-visible">
           <Swiper
-            spaceBetween={20}
-            slidesPerView={3}
+            spaceBetween={15}
+            slidesPerView={1}
             onSwiper={handleSwiperInit}
             onSlideChange={handleSlideChange}
             watchOverflow={false}
@@ -122,9 +122,15 @@ function Activities() {
             breakpoints={{
               640: {
                 slidesPerView: 1,
+                spaceBetween: 15,
               },
               768: {
                 slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 20,
               },
             }}
           >
@@ -136,28 +142,17 @@ function Activities() {
             </SwiperSlide>
             <SwiperSlide>
               <Slide
-                title="Автовыставка"
-                imageSrc="/images/activities/car1.png"
+                title="дрифт такси"
+                imageSrc="/images/activities/taxi.png"
               />
             </SwiperSlide>
             <SwiperSlide>
               <Slide
-                title="Автовыставка"
-                imageSrc="/images/activities/car1.png"
+                title="SMP Race такси"
+                imageSrc="/images/activities/race_taxi.png"
               />
             </SwiperSlide>
-            <SwiperSlide>
-              <Slide
-                title="Автовыставка"
-                imageSrc="/images/activities/car1.png"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Slide
-                title="Автовыставка"
-                imageSrc="/images/activities/car1.png"
-              />
-            </SwiperSlide>
+
           </Swiper>
         </div>
       </div>
