@@ -4,6 +4,7 @@ import { fluxgore } from "@/utils/fonts";
 function Partners() {
   return (
     <div
+      id="partners"
       className="bg-[#161616] relative py-16 sm:py-32 lg:py-52"
       style={{
         backgroundImage: `url('/images/noise.svg')`,

@@ -47,7 +47,7 @@ function Navbar() {
         <ul className="hidden md:flex space-x-2 items-center">
           <li>
             <Link
-              href="https://t.me/your_channel"
+              href="https://t.me/moscow_drift"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 bg-white bg-opacity-10 hover:bg-opacity-20 hover:scale-110 active:scale-95 rounded-full flex items-center justify-center transition-all duration-200 transform hover:shadow-lg hover:shadow-blue-500/30"
@@ -62,7 +62,7 @@ function Navbar() {
           </li>
           <li>
             <Link
-              href="https://vk.com/your_group"
+              href="https://vk.com/mos.drift"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 bg-white bg-opacity-10 hover:bg-opacity-20 hover:scale-110 active:scale-95 rounded-full flex items-center justify-center transition-all duration-200 transform hover:shadow-lg hover:shadow-blue-600/30"
@@ -77,7 +77,7 @@ function Navbar() {
           </li>
           <li>
             <Link
-              href="https://youtube.com/@your_channel"
+              href="https://www.youtube.com/@mossportonline9438"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 bg-white bg-opacity-10 hover:bg-opacity-20 hover:scale-110 active:scale-95 rounded-full flex items-center justify-center transition-all duration-200 transform hover:shadow-lg hover:shadow-red-500/30"
@@ -169,7 +169,7 @@ function Navbar() {
             {/* Mobile Social Links */}
             <div className="flex space-x-4 justify-center md:hidden">
               <Link
-                href="https://t.me/your_channel"
+                href="https://t.me/moscow_drift"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-full flex items-center justify-center transition-all duration-200"
@@ -179,7 +179,7 @@ function Navbar() {
                 </svg>
               </Link>
               <Link
-                href="https://vk.com/your_group"
+                href="https://vk.com/mos.drift"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-full flex items-center justify-center transition-all duration-200"
@@ -189,7 +189,7 @@ function Navbar() {
                 </svg>
               </Link>
               <Link
-                href="https://youtube.com/@your_channel"
+                href="https://www.youtube.com/@mossportonline9438"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-full flex items-center justify-center transition-all duration-200"

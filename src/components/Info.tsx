@@ -4,7 +4,7 @@ import Button from "./Button";
 
 function Info() {
   return (
-    <div className={gothampro.className}>
+    <div id="info" className={gothampro.className}>
       <div
         className="bg-[#161616] relative overflow-hidden px-4"
         style={{

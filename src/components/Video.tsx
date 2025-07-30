@@ -61,8 +61,7 @@ function Video() {
 
         <div className="flex mt-8 md:mt-14">
           <iframe
-            src="https://www.youtube.com/embed/FVzlAMLPFh0?si=E_EaXkQ3tJYtyf_s"
-            title="YouTube video player"
+            src="https://vkvideo.ru/video_ext.php?oid=-23293707&id=456242039&hd=2"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"

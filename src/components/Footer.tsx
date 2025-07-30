@@ -1,8 +1,19 @@
 import { fluxgore, gothampro } from "@/utils/fonts";
 import Link from "next/link";
+import { useCallback } from "react";
 
 /* eslint-disable @next/next/no-img-element */
 function Footer() {
+  const scrollToElement = useCallback((elementId: string) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, []);
+
   return (
     <footer className="bg-[#0D0D0D] py-16 md:py-36">
       <div className="container mx-auto px-4 flex flex-col space-y-9">
@@ -19,7 +30,7 @@ function Footer() {
             <ul className="flex space-x-2 items-center">
               <li>
                 <Link
-                  href="https://t.me/your_channel"
+                  href="https://t.me/moscow_drift"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 bg-white bg-opacity-10 hover:bg-opacity-20 hover:scale-110 active:scale-95 rounded-full flex items-center justify-center transition-all duration-200 transform hover:shadow-lg hover:shadow-blue-500/30"
@@ -34,7 +45,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://vk.com/your_group"
+                  href="https://vk.com/mos.drift"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 bg-white bg-opacity-10 hover:bg-opacity-20 hover:scale-110 active:scale-95 rounded-full flex items-center justify-center transition-all duration-200 transform hover:shadow-lg hover:shadow-blue-600/30"
@@ -49,7 +60,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://youtube.com/@your_channel"
+                  href="https://www.youtube.com/@mossportonline9438"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-8 h-8 bg-white bg-opacity-10 hover:bg-opacity-20 hover:scale-110 active:scale-95 rounded-full flex items-center justify-center transition-all duration-200 transform hover:shadow-lg hover:shadow-red-500/30"
@@ -74,30 +85,30 @@ function Footer() {
                 СОБЫТИЯ
               </h3>
               <div className="flex flex-col space-y-2">
-                <Link
-                  href="/#cover"
-                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                <button
+                  onClick={() => scrollToElement("yuka")}
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200 text-left`}
                 >
                   YUKA Drive Fest
-                </Link>
+                </button>
                 <Link
                   href="/#cover"
                   className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
                 >
                   ЭКСПО
                 </Link>
-                <Link
-                  href="/#cover"
-                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                <button
+                  onClick={() => scrollToElement("moto")}
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200 text-left`}
                 >
                   Мотокросс
-                </Link>
-                <Link
-                  href="/#cover"
-                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                </button>
+                <button
+                  onClick={() => scrollToElement("moscow_fight")}
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200 text-left`}
                 >
                   Дрифт Битва за Москву
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -108,29 +119,17 @@ function Footer() {
                 ИНФОРМАЦИЯ
               </h3>
               <div className="flex flex-col space-y-2">
-                <Link
-                  href="/#about"
-                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                <button
+                  onClick={() => scrollToElement("info")}
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200 text-left`}
                 >
                   О фестивале
-                </Link>
+                </button>
                 <Link
                   href="/#program"
                   className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
                 >
                   Программа
-                </Link>
-                <Link
-                  href="/#tickets"
-                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-                >
-                  Билеты
-                </Link>
-                <Link
-                  href="/#contacts"
-                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-                >
-                  Контакты
                 </Link>
               </div>
             </div>
@@ -148,23 +147,17 @@ function Footer() {
                 >
                   Регистрация
                 </Link>
-                <Link
-                  href="/#sponsors"
-                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
+                <button
+                  onClick={() => scrollToElement("partners")}
+                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200 text-left`}
                 >
                   Партнеры
-                </Link>
+                </button>
                 <Link
-                  href="/#media"
+                  href="https://forms.yandex.ru/u/6888b64502848f0274f5e9df"
                   className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
                 >
                   Пресса
-                </Link>
-                <Link
-                  href="/#volunteer"
-                  className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200`}
-                >
-                  Волонтерство
                 </Link>
               </div>
             </div>
