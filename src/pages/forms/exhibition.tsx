@@ -1,4 +1,5 @@
 import Checkbox from "@/components/form/Checkbox";
+import Fileupload from "@/components/form/Fileupload";
 import Input from "@/components/form/Input";
 import Radio from "@/components/form/Radio";
 import Select from "@/components/form/Select";
@@ -77,6 +78,14 @@ function ExhibtionFormPage() {
         className="mt-4"
         direction="vertical"
         name="termsAgreement"
+      />
+
+      <Fileupload
+        label="Загрузите файлы"
+        onFileSelect={(files) => console.log("Selected files:", files)}
+        acceptedTypes={["image/*", "application/pdf"]}
+        maxFileSize={5}
+        multiple={true}
       />
     </div>
   );
