@@ -5,21 +5,49 @@ import Textarea from "@/components/form/Textarea";
 import { fluxgore, gothampro } from "@/utils/fonts";
 import { useState } from "react";
 
-function ExhibtionFormPage() {
+function FightFormPage() {
   const [checkboxValues, setCheckboxValues] = useState<string[]>([]);
 
   return (
-    <div className="bg-[#ffffff] relative p-6 md:p-8 lg:p-12 flex flex-col items-center justify-center md:h-full">
+    <div className="bg-[#ffffff] relative p-6 md:p-8 lg:p-12 flex flex-col items-center justify-center">
       <h1
         className={`${fluxgore.className} text-4xl md:text-7xl text-[#060606] relative mb-8 md:mb-12`}
       >
-        Регистрация на выставку
+        Регистрация на Битву за Москву
       </h1>
 
       <div className="space-y-6 max-w-2xl w-full">
         <Input
+          label="Фамилия"
+          placeholder="Введите вашу фамилию"
+          type="text"
+          required
+        />
+
+        <Input
           label="Имя"
           placeholder="Введите ваше имя"
+          type="text"
+          required
+        />
+
+        <Input
+          label="Отчество"
+          placeholder="Введите ваше отчество"
+          type="text"
+          required
+        />
+
+        <Input
+          label="Дата рождения"
+          placeholder="дд.мм.гггг"
+          type="text"
+          required
+        />
+
+        <Input
+          label="Гражданство"
+          placeholder="Введите ваше гражданство"
           type="text"
           required
         />
@@ -52,6 +80,20 @@ function ExhibtionFormPage() {
           required
         />
 
+        <Input
+          label="Двигатель"
+          placeholder="Введите тип двигателя"
+          type="text"
+          required
+        />
+
+        <Input
+          label="Мощность"
+          placeholder="Введите мощность (л.с.)"
+          type="text"
+          required
+        />
+
         <Fileupload
           label="Фото автомобиля (до 3 файлов)"
           onFileSelect={(files) => console.log("Selected files:", files)}
@@ -62,8 +104,8 @@ function ExhibtionFormPage() {
         />
 
         <Textarea
-          label="Интересное об автомобиле"
-          placeholder="Расскажите что-то интересное о вашем автомобиле"
+          label="Дополнительная информация"
+          placeholder="Дополнительная информация об автомобиле"
           rows={4}
           cols={50}
         />
@@ -99,4 +141,4 @@ function ExhibtionFormPage() {
   );
 }
 
-export default ExhibtionFormPage;
+export default FightFormPage;

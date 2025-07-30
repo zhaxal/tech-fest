@@ -47,7 +47,7 @@ export default function Checkbox({
   };
 
   return (
-    <div className={`flex flex-col gap-2 w-full max-w-sm ${className}`}>
+    <div className={`flex flex-col gap-2 w-full ${className}`}>
       <div
         className={`flex gap-2 ${
           direction === "vertical" ? "flex-col" : "flex-row flex-wrap"

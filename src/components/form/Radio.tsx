@@ -41,7 +41,7 @@ export default function Radio({
   };
 
   return (
-    <div className={`flex flex-col gap-2 w-full max-w-sm ${className}`}>
+    <div className={`flex flex-col gap-2 w-full ${className}`}>
       {label && (
         <label
           className={`${gothampro.className} text-base font-bold text-black`}

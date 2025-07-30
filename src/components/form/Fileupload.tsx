@@ -1,4 +1,4 @@
-import { gothampro } from "@/utils/fonts";
+import { gothampro, fluxgore } from "@/utils/fonts";
 import React, { useState, useRef, DragEvent, ChangeEvent } from "react";
 
 interface FileUploadProps {
@@ -6,6 +6,7 @@ interface FileUploadProps {
   onFileSelect?: (files: File[]) => void;
   acceptedTypes?: string[];
   maxFileSize?: number; // in MB
+  maxFiles?: number; // maximum number of files
   multiple?: boolean;
   disabled?: boolean;
   placeholder?: string;
@@ -19,6 +20,7 @@ function Fileupload({
   onFileSelect,
   acceptedTypes = ["image/*", "application/pdf", ".doc", ".docx"],
   maxFileSize = 10,
+  maxFiles = 5,
   multiple = false,
   disabled = false,
   placeholder = "Файл в формате jpg или png до N мб",
@@ -67,15 +69,41 @@ function Fileupload({
     if (!files) return;
 
     const fileArray = Array.from(files);
-    const { valid, errors } = validateFiles(fileArray);
-
-    setErrors(errors);
+    const { valid, errors: validationErrors } = validateFiles(fileArray);
+    const allErrors = [...validationErrors];
 
     if (valid.length > 0) {
-      const newFiles = multiple ? [...selectedFiles, ...valid] : valid;
+      let newFiles: File[];
+
+      if (multiple) {
+        // Check if adding new files would exceed maxFiles limit
+        const totalFiles = selectedFiles.length + valid.length;
+        if (totalFiles > maxFiles) {
+          const allowedCount = maxFiles - selectedFiles.length;
+          if (allowedCount <= 0) {
+            allErrors.push(
+              `Maximum ${maxFiles} files allowed. Remove some files first.`
+            );
+            setErrors(allErrors);
+            return;
+          } else {
+            allErrors.push(
+              `Only ${allowedCount} more files can be added (max ${maxFiles} total).`
+            );
+            newFiles = [...selectedFiles, ...valid.slice(0, allowedCount)];
+          }
+        } else {
+          newFiles = [...selectedFiles, ...valid];
+        }
+      } else {
+        newFiles = valid;
+      }
+
       setSelectedFiles(newFiles);
       onFileSelect?.(newFiles);
     }
+
+    setErrors(allErrors);
   };
 
   const handleDrag = (e: DragEvent<HTMLDivElement>) => {
@@ -116,6 +144,10 @@ function Fileupload({
     }
   };
 
+  // Check if upload button should be disabled
+  const isUploadDisabled =
+    disabled || (multiple && selectedFiles.length >= maxFiles);
+
   return (
     <div className="w-full">
       {label && (
@@ -131,10 +163,12 @@ function Fileupload({
       {/* Upload Area */}
       <div
         className={`
-          flex items-center border rounded-md overflow-hidden transition-colors
-          ${dragActive ? "border-blue-400 bg-blue-50" : "border-gray-300"}
+          flex items-center overflow-hidden transition-colors
+          ${dragActive ? "border-[#1068B0] bg-[#1068B0]/10" : "border-gray-300"}
           ${
-            disabled ? "opacity-50 cursor-not-allowed" : "hover:border-blue-400"
+            isUploadDisabled
+              ? "opacity-50 cursor-not-allowed"
+              : "hover:border-[#1068B0]"
           }
         `}
         onDragEnter={handleDrag}
@@ -149,7 +183,7 @@ function Fileupload({
           multiple={multiple}
           accept={acceptedTypes.join(",")}
           onChange={handleInputChange}
-          disabled={disabled}
+          disabled={isUploadDisabled}
           id={id}
           name={name}
         />
@@ -158,8 +192,8 @@ function Fileupload({
         <button
           type="button"
           onClick={openFileDialog}
-          disabled={disabled}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-medium uppercase tracking-wide disabled:opacity-50"
+          disabled={isUploadDisabled}
+          className={`${fluxgore.className} bg-[#1068B0] hover:bg-[#0d5a96] text-white px-9 py-4 text-base font-medium uppercase tracking-wide disabled:opacity-50`}
         >
           ПРИКРЕПИТЬ
         </button>
@@ -167,9 +201,14 @@ function Fileupload({
         {/* File Display Area */}
         <div className="flex-1 px-3 py-2 min-h-[40px] flex items-center">
           {selectedFiles.length > 0 ? (
-            <div className="flex items-center justify-between w-full">
+            <div className="flex items-center justify-between">
               <span className="text-sm text-gray-900 truncate">
                 {selectedFiles[0].name}
+                {multiple && selectedFiles.length > 1 && (
+                  <span className="text-gray-500 ml-1">
+                    and {selectedFiles.length - 1} more
+                  </span>
+                )}
               </span>
               <button
                 type="button"
@@ -195,12 +234,19 @@ function Fileupload({
               </button>
             </div>
           ) : (
-            <span className="text-sm text-gray-500">
+            <span className={`${gothampro.className} text-sm text-gray-500`}>
               {placeholder.replace("N", maxFileSize.toString())}
             </span>
           )}
         </div>
       </div>
+
+      {/* File count indicator for multiple files */}
+      {multiple && selectedFiles.length > 0 && (
+        <div className="mt-1 text-xs text-gray-500">
+          {selectedFiles.length} of {maxFiles} files selected
+        </div>
+      )}
 
       {/* Error Messages */}
       {errors.length > 0 && (

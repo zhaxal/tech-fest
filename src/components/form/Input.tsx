@@ -32,7 +32,7 @@ function Input({
   name,
 }: InputProps) {
   return (
-    <div className={`flex flex-col gap-2 w-full max-w-sm ${className}`}>
+    <div className={`flex flex-col gap-2 w-full ${className}`}>
       {label && (
         <label
           htmlFor={id || name}
