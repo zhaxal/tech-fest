@@ -5,7 +5,7 @@ import { gothampro } from "@/utils/fonts";
 interface InputProps {
   label?: string;
   placeholder?: string;
-  type?: "text" | "email" | "password" | "number" | "tel";
+  type?: "text" | "email" | "password" | "number" | "tel" | "date" | "datetime-local" | "time";
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -15,6 +15,8 @@ interface InputProps {
   className?: string;
   id?: string;
   name?: string;
+  min?: string;
+  max?: string;
 }
 
 function Input({
@@ -30,6 +32,8 @@ function Input({
   className = "",
   id,
   name,
+  min,
+  max,
 }: InputProps) {
   return (
     <div className={`flex flex-col gap-2 w-full ${className}`}>
@@ -52,6 +56,8 @@ function Input({
         placeholder={placeholder}
         disabled={disabled}
         required={required}
+        min={min}
+        max={max}
         className={`
           w-full px-4 py-3 
           border border-gray-300 

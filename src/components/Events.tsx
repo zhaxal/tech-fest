@@ -1,15 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
 import { fluxgore, gothampro } from "@/utils/fonts";
 import Button from "./Button";
+import { useRouter } from "next/router";
 
 interface EventCardProps extends React.HTMLAttributes<HTMLDivElement> {
   image: string;
   title: string;
   description: string;
   link: string;
+  disabled: boolean;
 }
 
 function EventCard(props: EventCardProps) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (!props.disabled) {
+      router.push(props.link);
+    }
+  };
+
   return (
     <div
       id={props.id}
@@ -35,7 +45,12 @@ function EventCard(props: EventCardProps) {
         </p>
       </div>
       <div className="flex justify-center md:justify-end w-full md:w-1/3">
-        <Button variant="blue" shadowEnabled={false}>
+        <Button
+          onClick={handleClick}
+          disabled={props.disabled}
+          variant="blue"
+          shadowEnabled={false}
+        >
           регистрация
         </Button>
       </div>
@@ -77,6 +92,7 @@ function Events() {
 
         <div className="flex flex-col space-y-4 md:space-y-7 mt-16 md:mt-36">
           <EventCard
+            disabled={true}
             id="yuka"
             image="/events/yuka.png"
             title="YUKA Drive Fest Джимхана"
@@ -84,13 +100,15 @@ function Events() {
             link="#"
           />
           <EventCard
+            disabled={false}
             id="moscow_fight"
             image="/events/moscow_fight.png"
             title="Дрифт«Битва за Москву»"
             description="Любительский турнир по дрифту, который вырос из проекта «Дорога в дрифт», созданного в 2021 году для поиска новых талантов. За три года он превратился в полноценные соревнования с привлекательным призовым фондом. Во второй день фестиваля, 8 сентября, пройдет дрифт-гонка, где главным призом станет электромобиль «Москвич». Соревнования проводятся по традиционной олимпийской системе. Чтобы принять участие, необходимо подать заявку на сайте и дождаться приглашения от организаторов."
-            link="#"
+            link="/forms/fight"
           />
           <EventCard
+            disabled={true}
             id="moto"
             image="/events/moto.png"
             title="КуБок ШОС по Мотокроссу"
@@ -98,6 +116,7 @@ function Events() {
             link="#"
           />
           <EventCard
+            disabled={true}
             image="/events/cart.png"
             title="Кубок по Фиджитал картингу"
             description="На Фестивале технических видов спорта 2025 впервые состоится Кубок по Фиджитал Картингу! Это уникальное состязание, где виртуальная реальность встречается с реальной трассой. Участники будут сражаться на симуляторах, а затем переносить свои навыки на настоящий картинг, демонстрируя невероятную адаптивность и мастерство."
