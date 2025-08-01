@@ -35,7 +35,7 @@ function Info() {
 
             <div className="flex-col max-w-10/12">
               <p className="text-white text-base md:text-4xl font-normal">
-                Организованный Департаментом спорта Москвы и РАФ в День города,
+                Организованный Департаментом спорта Москвы и РАФ,
                 он объединяет фанатов скорости и семьи.
               </p>
             </div>

@@ -255,7 +255,15 @@ function FightFormPage() {
                 <label
                   className={`${gothampro.className} text-base text-black`}
                 >
-                  Согласие на обработку персональных данных
+                  Согласие на{" "}
+                  <a
+                    href="/privacy.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1068B0] underline hover:text-[#0d5a96]"
+                  >
+                    обработку персональных данных
+                  </a>
                 </label>
               ),
             },

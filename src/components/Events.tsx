@@ -16,7 +16,12 @@ function EventCard(props: EventCardProps) {
 
   const handleClick = () => {
     if (!props.disabled) {
-      router.push(props.link);
+      // Check if it's an external link
+      if (props.link.startsWith("http")) {
+        window.open(props.link, "_blank");
+      } else {
+        router.push(props.link);
+      }
     }
   };
 
@@ -45,14 +50,11 @@ function EventCard(props: EventCardProps) {
         </p>
       </div>
       <div className="flex justify-center md:justify-end w-full md:w-1/3">
-        <Button
-          onClick={handleClick}
-          disabled={props.disabled}
-          variant="blue"
-          shadowEnabled={false}
-        >
-          регистрация
-        </Button>
+        {!props.disabled && (
+          <Button onClick={handleClick} variant="blue" shadowEnabled={false}>
+            регистрация
+          </Button>
+        )}
       </div>
     </div>
   );
@@ -92,20 +94,28 @@ function Events() {
 
         <div className="flex flex-col space-y-4 md:space-y-7 mt-16 md:mt-36">
           <EventCard
-            disabled={true}
+            disabled={false}
             id="yuka"
             image="/events/yuka.png"
             title="YUKA Drive Fest Джимхана"
             description="YUKA Drive Fest Джимхана впервые врывается в Москву, и местом его дебюта станет наш Фестиваль технических видов спорта! Это не просто гонки, это настоящий танец на асфальте, где мастерство водителя и мощь автомобиля сливаются воедино. Под чутким руководством и вдохновляющим присутствием легендарного Аркадия Цареградцева, амбассадора и супер-босса соревнований, лучшие джимханисты страны покажут невероятные трюки, демонстрируя виртуозное владение машиной. Скорость, точность, дым из-под колес и филигранные маневры в ограниченном пространстве – вот что такое Джимхана."
-            link="#"
+            link="https://yukafest.ru/pilots/"
           />
           <EventCard
             disabled={false}
             id="moscow_fight"
             image="/events/moscow_fight.png"
-            title="Дрифт«Битва за Москву»"
-            description="Любительский турнир по дрифту, который вырос из проекта «Дорога в дрифт», созданного в 2021 году для поиска новых талантов. За три года он превратился в полноценные соревнования с привлекательным призовым фондом. Во второй день фестиваля, 8 сентября, пройдет дрифт-гонка, где главным призом станет электромобиль «Москвич». Соревнования проводятся по традиционной олимпийской системе. Чтобы принять участие, необходимо подать заявку на сайте и дождаться приглашения от организаторов."
+            title="Дрифт «Битва за Москву»"
+            description="Любительский турнир по дрифту, который вырос из проекта «Дорога в дрифт», созданного в 2021 году для поиска новых талантов. За три года он превратился в полноценные соревнования с привлекательным призовым фондом. Во второй день фестиваля, 8 сентября, пройдет дрифт-гонка. Соревнования проводятся по традиционной олимпийской системе. Чтобы принять участие, необходимо подать заявку на сайте и дождаться приглашения от организаторов."
             link="/forms/fight"
+          />
+          <EventCard
+            disabled={false}
+            id="exhibition"
+            image="/images/activities/car1.png"
+            title="Автовыставка"
+            description="...Уникальные машины, дрифт-кары, кастом и тюнинг — в одном месте. От ретро до hi-tech, от stance до muscle. Приходи посмотреть, сфотографировать и пообщаться с владельцами.А если хочешь стать участником и побороться за главный приз - подавай заявку!"
+            link="/forms/exhibition"
           />
           <EventCard
             disabled={true}
