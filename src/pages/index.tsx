@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Activities from "@/components/Activities";
-import Cover from "@/components/Cover";
+import Cover, { CoverSoon } from "@/components/Cover";
 import Events from "@/components/Events";
 import Footer from "@/components/Footer";
 import Info from "@/components/Info";
@@ -18,18 +18,7 @@ export default function Home() {
       <Head>
         <title>Фестиваль технических видов спорта</title>
       </Head>
-      <Navbar />
-      <main className="flex-col min-h-full">
-        <Cover />
-        <Info />
-        <Video />
-        {/* <Scheme /> */}
-        <Events />
-        <Activities />
-        <Partners />
-        <Map />
-      </main>
-      <Footer />
+      <CoverSoon />
     </>
   );
 }
