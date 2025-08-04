@@ -18,7 +18,18 @@ export default function Home() {
       <Head>
         <title>Фестиваль технических видов спорта</title>
       </Head>
-      <CoverSoon />
+      <Navbar />
+      <main className="flex-col min-h-full">
+        <Cover />
+        <Info />
+        <Video />
+        {/* <Scheme /> */}
+        <Events />
+        <Activities />
+        <Partners />
+        <Map />
+      </main>
+      <Footer />
     </>
   );
 }
