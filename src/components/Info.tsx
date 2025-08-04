@@ -87,7 +87,7 @@ function Info() {
           </div>
           <div className="w-full md:w-1/3 flex justify-center">
             <img
-              src="/images/info/podium.png"
+              src="/images/info/podium.jpg"
               alt="car"
               className="w-3/4 md:w-full h-auto object-cover"
             />

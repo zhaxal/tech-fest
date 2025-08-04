@@ -92,7 +92,7 @@ function Cover() {
   return (
     <div
       className="bg-cover bg-center bg-no-repeat relative justify-center items-center py-36"
-      style={{ backgroundImage: "url('/images/cover.svg')" }}
+      style={{ backgroundImage: "url('/images/KV.png')" }}
     >
       <div className="container mx-auto mb-24">
         {/* Top row with ФЕСТИВАЛЬ and date box */}
@@ -143,7 +143,7 @@ function CoverSoon() {
   return (
     <div
       className="bg-cover bg-center bg-no-repeat relative justify-center items-center py-36"
-      style={{ backgroundImage: "url('/images/cover.svg')" }}
+      style={{ backgroundImage: "url('/images/KV.png')" }}
     >
       <div className="container mx-auto max-w-5/7 mb-24">
         {/* Top row with ФЕСТИВАЛЬ and date box */}

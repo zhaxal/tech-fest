@@ -137,13 +137,13 @@ function Activities() {
             <SwiperSlide>
               <Slide
                 title="Автовыставка"
-                imageSrc="/images/activities/car1.png"
+                imageSrc="/images/activities/car1.jpg"
               />
             </SwiperSlide>
             <SwiperSlide>
               <Slide
                 title="дрифт такси"
-                imageSrc="/images/activities/taxi.png"
+                imageSrc="/images/activities/taxi.jpg"
               />
             </SwiperSlide>
             <SwiperSlide>
