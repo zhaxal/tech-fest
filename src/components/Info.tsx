@@ -67,8 +67,7 @@ function Info() {
               <Button
                 onClick={() => {
                   // open this link in a new tab
-                  const url =
-                    "https://disk.yandex.ru/d/l8yiw1huY5NU9whttps://disk.yandex.ru/d/l8yiw1huY5NU9w";
+                  const url = "https://disk.yandex.ru/d/l8yiw1huY5NU9w";
 
                   window.open(url, "_blank", "noopener,noreferrer");
                 }}

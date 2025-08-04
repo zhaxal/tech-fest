@@ -137,7 +137,7 @@ function Navbar() {
                   О фестивале
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/about"
                   className="block py-2 hover:text-gray-300"
@@ -145,7 +145,7 @@ function Navbar() {
                 >
                   Карта
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="/events"
