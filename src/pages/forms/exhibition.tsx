@@ -11,7 +11,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 const pb = new PocketBase(
-  "http://pocketbase-nkg4scskc4okw4w0cw4w88gk.176.114.67.63.sslip.io"
+  "https://base.mossport.info"
 );
 
 function ExhibtionFormPage() {
