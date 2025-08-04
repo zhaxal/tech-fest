@@ -26,11 +26,11 @@ function Navbar() {
               О фестивале
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/about" className="hover:underline">
               Карта
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link href="/events" className="hover:underline">
               соревнования

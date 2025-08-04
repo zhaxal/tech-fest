@@ -35,8 +35,8 @@ function Info() {
 
             <div className="flex-col max-w-10/12">
               <p className="text-white text-base md:text-4xl font-normal">
-                Организованный Департаментом спорта Москвы и РАФ,
-                он объединяет фанатов скорости и семьи.
+                Организованный Департаментом спорта Москвы и РАФ, он объединяет
+                фанатов скорости и семьи.
               </p>
             </div>
           </div>
@@ -66,7 +66,11 @@ function Info() {
             <div className="flex-col md:min-w-2/3 justify-start items-start">
               <Button
                 onClick={() => {
-                  console.log("test");
+                  // open this link in a new tab
+                  const url =
+                    "https://disk.yandex.ru/d/l8yiw1huY5NU9whttps://disk.yandex.ru/d/l8yiw1huY5NU9w";
+
+                  window.open(url, "_blank", "noopener,noreferrer");
                 }}
                 shadowEnabled={false}
                 variant="blue"

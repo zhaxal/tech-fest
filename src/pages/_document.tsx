@@ -47,6 +47,62 @@ export default function Document() {
           </div>
         </noscript>
 
+        {/* Cookie Banner */}
+        <div
+          id="cookie-banner"
+          style={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            background: "#f0f0f0",
+            color: "#000",
+            padding: "15px",
+            fontSize: "14px",
+            display: "none",
+            zIndex: 1000,
+            boxShadow: "0 -2px 8px rgba(0,0,0,0.1)",
+          }}
+        >
+          <div
+            style={{
+              maxWidth: "960px",
+              margin: "0 auto",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <div style={{ marginRight: "15px" }}>
+              Мы используем cookie для повышения удобства работы с сайтом.
+              Подробнее — в{" "}
+              <a
+                href="https://tech-fest.sport.mos.ru/privacy.html"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                политике конфиденциальности
+              </a>
+              .
+            </div>
+            <button
+              id="cookie-accept"
+              style={{
+                marginTop: "10px",
+                padding: "8px 16px",
+                background: "#eb3333",
+                color: "white",
+                border: "none",
+                cursor: "pointer",
+                borderRadius: "4px",
+              }}
+            >
+              Хорошо
+            </button>
+          </div>
+        </div>
+
         <div
           style={{ display: "none" }}
           itemScope
@@ -74,6 +130,24 @@ export default function Document() {
         </div>
         <Main />
         <NextScript />
+
+        {/* Cookie Banner Script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.addEventListener("DOMContentLoaded", function () {
+                if (!localStorage.getItem("cookieAccepted")) {
+                  document.getElementById("cookie-banner").style.display = "block";
+                }
+
+                document.getElementById("cookie-accept").addEventListener("click", function () {
+                  localStorage.setItem("cookieAccepted", "true");
+                  document.getElementById("cookie-banner").style.display = "none";
+                });
+              });
+            `,
+          }}
+        />
       </body>
     </Html>
   );
