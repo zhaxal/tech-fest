@@ -86,7 +86,7 @@ function Activities() {
   };
 
   return (
-    <div className="bg-[#F4F4F4] relative pt-12 pb-16 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-32">
+    <div id="activities" className="bg-[#F4F4F4] relative pt-12 pb-16 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-32">
       <div className="container mx-auto px-4">
         <div className="flex space-y-6 flex-row sm:justify-between sm:items-center sm:space-y-0">
           <h1

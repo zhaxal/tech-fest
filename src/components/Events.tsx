@@ -63,6 +63,7 @@ function EventCard(props: EventCardProps) {
 function Events() {
   return (
     <div
+      id="events"
       className="bg-[#161616] relative pt-32 md:pt-64 pb-16 md:pb-32"
       style={{
         backgroundImage: `url('/images/noise.svg')`,

@@ -10,6 +10,16 @@ function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // const scrollToElement = useCallback((elementId: string) => {
+  //   const element = document.getElementById(elementId);
+  //   if (element) {
+  //     element.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start",
+  //     });
+  //   }
+  // }, []);
+
   return (
     <nav className="absolute top-0 left-0 w-full bg-[#0D0D0D] text-white px-2 z-50">
       <div className="container min-h-20 mx-auto flex justify-between items-center">
@@ -22,7 +32,7 @@ function Navbar() {
         {/* Desktop Navigation */}
         <ul className="hidden lg:flex space-x-20 uppercase text-base">
           <li>
-            <Link href="/" className="hover:underline">
+            <Link href="#info" className="hover:underline">
               О фестивале
             </Link>
           </li>
@@ -32,12 +42,12 @@ function Navbar() {
             </Link>
           </li> */}
           <li>
-            <Link href="/events" className="hover:underline">
+            <Link href="#events" className="hover:underline">
               соревнования
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="hover:underline">
+            <Link href="#activities" className="hover:underline">
               Активности
             </Link>
           </li>
