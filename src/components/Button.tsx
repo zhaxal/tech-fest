@@ -7,6 +7,7 @@ interface ButtonProps {
   variant?: "default" | "blue" | "blue_alt";
   shadowEnabled?: boolean;
   disabled?: boolean;
+  style?: React.CSSProperties;
 }
 
 export default function Button(props: ButtonProps) {
@@ -28,7 +29,10 @@ export default function Button(props: ButtonProps) {
   };
 
   return (
-    <div className={`${fluxgore.className} relative inline-block`}>
+    <div
+      style={props.style}
+      className={`${fluxgore.className} relative inline-block`}
+    >
       {/* Shadow element */}
       {shadowEnabled && !disabled && (
         <div
