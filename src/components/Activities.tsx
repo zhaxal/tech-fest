@@ -43,7 +43,7 @@ function SwiperButton({
 function Slide({ title, imageSrc }: { title: string; imageSrc: string }) {
   return (
     <div className="flex flex-col bg-[#1068B0] py-4 px-3 sm:py-6 sm:px-3.5 relative">
-      <h2 className={`${fluxgore.className} text-2xl sm:text-3xl lg:text-4xl text-white leading-none`}>
+      <h2 className={`${fluxgore.className} text-2xl sm:text-3xl lg:text-4xl text-white leading-none uppercase`}>
         {title}
       </h2>
       <img
@@ -90,7 +90,7 @@ function Activities() {
       <div className="container mx-auto px-4">
         <div className="flex space-y-6 flex-row sm:justify-between sm:items-center sm:space-y-0">
           <h1
-            className={`${fluxgore.className} text-3xl sm:text-5xl lg:text-7xl text-[#060606] relative max-w-2xs md:max-w-full`}
+            className={`${fluxgore.className} text-3xl sm:text-5xl lg:text-7xl text-[#060606] relative max-w-2xs md:max-w-full uppercase`}
           >
             Активности фестиваля
           </h1>

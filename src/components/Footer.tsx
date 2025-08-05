@@ -80,7 +80,7 @@ function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col space-y-4 md:space-y-7">
               <h3
-                className={`${fluxgore.className} text-base md:text-[18px] text-[#E6E6E6]`}
+                className={`${fluxgore.className} text-base md:text-[18px] text-[#E6E6E6] uppercase`}
               >
                 СОБЫТИЯ
               </h3>
@@ -114,7 +114,7 @@ function Footer() {
 
             <div className="flex flex-col space-y-4 md:space-y-7">
               <h3
-                className={`${fluxgore.className} text-base md:text-[18px] text-[#E6E6E6]`}
+                className={`${fluxgore.className} text-base md:text-[18px] text-[#E6E6E6] uppercase`}
               >
                 ИНФОРМАЦИЯ
               </h3>
@@ -136,7 +136,7 @@ function Footer() {
 
             <div className="flex flex-col space-y-4 md:space-y-7">
               <h3
-                className={`${fluxgore.className} text-base md:text-[18px] text-[#E6E6E6]`}
+                className={`${fluxgore.className} text-base md:text-[18px] text-[#E6E6E6] uppercase`}
               >
                 УЧАСТИЕ
               </h3>

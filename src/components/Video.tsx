@@ -12,7 +12,7 @@ function VideoStats(props: VideoStatsProps) {
   return (
     <div className="flex flex-col">
       <h1
-        className={`${fluxgore.className} text-4xl md:text-8xl text-[#1068B0] relative`}
+        className={`${fluxgore.className} text-4xl md:text-8xl text-[#1068B0] relative uppercase`}
       >
         {number}
       </h1>
@@ -93,7 +93,7 @@ function Video() {
           className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-16 opacity-0 translate-y-8 transition-all duration-700"
         >
           <h1
-            className={`${fluxgore.className} text-4xl md:text-7xl text-white relative`}
+            className={`${fluxgore.className} text-4xl md:text-7xl text-white relative uppercase`}
           >
             как это Было
           </h1>

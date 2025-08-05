@@ -121,7 +121,7 @@ function FightFormPage() {
         <title>Фестиваль технических видов спорта</title>
       </Head>
       <h1
-        className={`${fluxgore.className} text-4xl md:text-7xl text-[#060606] relative mb-8 md:mb-12`}
+        className={`${fluxgore.className} text-4xl md:text-7xl text-[#060606] relative mb-8 md:mb-12 uppercase`}
       >
         Регистрация на Битву за Москву
       </h1>

@@ -31,7 +31,7 @@ export default function Button(props: ButtonProps) {
   return (
     <div
       style={props.style}
-      className={`${fluxgore.className} relative inline-block`}
+      className={`${fluxgore.className} relative inline-block uppercase`}
     >
       {/* Shadow element */}
       {shadowEnabled && !disabled && (

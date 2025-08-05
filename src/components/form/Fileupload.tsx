@@ -193,7 +193,7 @@ function Fileupload({
           type="button"
           onClick={openFileDialog}
           disabled={isUploadDisabled}
-          className={`${fluxgore.className} bg-[#1068B0] hover:bg-[#0d5a96] text-white px-9 py-4 text-base font-medium uppercase tracking-wide disabled:opacity-50`}
+          className={`${fluxgore.className} bg-[#1068B0] hover:bg-[#0d5a96] text-white px-9 py-4 text-base font-medium uppercase tracking-wide disabled:opacity-50 uppercase`}
         >
           ПРИКРЕПИТЬ
         </button>

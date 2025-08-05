@@ -12,7 +12,7 @@ function CoverHeading({ children, textPosition }: CoverHeadingProps) {
 
   return (
     <h1
-      className={`${fluxgore.className} text-white relative animate-fade-in-up`}
+      className={`${fluxgore.className} text-white relative animate-fade-in-up uppercase`}
       style={{
         textAlign: textAlign,
         fontSize: "clamp(50px, 10vw, 7vw)", // Slightly smaller on all screen sizes
@@ -70,7 +70,7 @@ function CoverHeading({ children, textPosition }: CoverHeadingProps) {
 function DateBox() {
   return (
     <div
-      className={`${fluxgore.className} bg-white text-black px-6 py-2 inline-block text-3xl md:text-[40px] animate-bounce-in`}
+      className={`${fluxgore.className} bg-white text-black px-6 py-2 inline-block text-3xl md:text-[40px] animate-bounce-in uppercase`}
       style={{
         transform: "skewX(-15deg)",
         lineHeight: "1.2",

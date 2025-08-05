@@ -41,7 +41,7 @@ function EventCard(props: EventCardProps) {
       </div>
       <div className="w-full md:w-1/3 mb-4 md:mb-0 md:px-4">
         <h2
-          className={`${fluxgore.className} text-2xl md:text-4xl text-white leading-tight md:leading-none`}
+          className={`${fluxgore.className} text-2xl md:text-4xl text-white leading-tight md:leading-none uppercase`}
         >
           {props.title}
         </h2>
@@ -83,7 +83,7 @@ function Events() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row md:justify-between space-y-6 md:space-y-0">
           <h1
-            className={`${fluxgore.className} text-4xl md:text-7xl text-white relative`}
+            className={`${fluxgore.className} text-4xl md:text-7xl text-white relative uppercase`}
           >
             что вас ждет
           </h1>

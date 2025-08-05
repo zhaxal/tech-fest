@@ -7,13 +7,13 @@ function Map() {
       <div className="container mx-auto flex flex-col lg:flex-row px-4">
         <div className="flex flex-col w-full lg:w-1/2 mb-8 lg:mb-0">
           <h1
-            className={`${fluxgore.className} text-4xl md:text-5xl lg:text-7xl text-white relative`}
+            className={`${fluxgore.className} text-4xl md:text-5xl lg:text-7xl text-white relative uppercase`}
           >
             как нас найти
           </h1>
 
           <h2
-            className={`${fluxgore.className} text-2xl md:text-3xl lg:text-4xl text-[#1068B0] mt-10 lg:mt-20`}
+            className={`${fluxgore.className} text-2xl md:text-3xl lg:text-4xl text-[#1068B0] mt-10 lg:mt-20 uppercase`}
           >
             5-7 сентября 2025
           </h2>

@@ -65,7 +65,7 @@ function Partners() {
           className="opacity-0 translate-y-8 transition-all duration-700"
         >
           <h1
-            className={`${fluxgore.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white relative`}
+            className={`${fluxgore.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white relative uppercase`}
           >
             партнеры
           </h1>
