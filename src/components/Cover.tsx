@@ -139,7 +139,7 @@ function Cover() {
       </div>
 
       <div className="flex justify-center items-center">
-        <Button
+        {/* <Button
           onClick={() => {
             window.location.href = "/about";
           }}
@@ -150,7 +150,7 @@ function Cover() {
           }}
         >
           смотреть карту
-        </Button>
+        </Button> */}
       </div>
 
       <style jsx>{`
