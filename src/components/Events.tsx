@@ -186,7 +186,7 @@ function Events() {
             }
             link="/forms/exhibition"
           />
-          <EventCard
+          {/* <EventCard
             disabled={true}
             id="moto"
             image="/events/moto.png"
@@ -214,7 +214,7 @@ function Events() {
               </>
             }
             link="#"
-          />
+          /> */}
           <EventCard
             disabled={true}
             image="/events/cart.png"
