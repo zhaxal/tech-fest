@@ -25,7 +25,14 @@ function Map() {
           </p>
 
           <div className="flex flex-col justify-end flex-grow mt-6 lg:mt-10">
-            <Button shadowEnabled={false}>схема проезда</Button>
+            <Button
+              onClick={() => {
+                window.open("/СХЕМА ПРОЕЗДА-1.pdf", "_blank");
+              }}
+              shadowEnabled={false}
+            >
+              схема проезда
+            </Button>
           </div>
         </div>
 

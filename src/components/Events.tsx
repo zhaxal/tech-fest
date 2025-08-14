@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import { fluxgore, gothampro } from "@/utils/fonts";
 import Button from "./Button";
@@ -22,7 +23,7 @@ function EventCard(props: EventCardProps) {
       if (props.link.startsWith("http")) {
         window.open(props.link, "_blank");
       } else {
-        router.push(props.link);
+        window.open(props.link, "_blank");
       }
     }
   };
@@ -142,9 +143,7 @@ function Events() {
                 </p>
                 <br />
 
-                <p>
-                  Во второй день фестиваля, 8 сентября, пройдет дрифт-гонка.
-                </p>
+                <p>В воскресенье, 7 сентября, пройдет дрифт-гонка.</p>
                 <br />
 
                 <p>
@@ -172,7 +171,7 @@ function Events() {
             description={
               <>
                 <p>
-                  ...Уникальные машины, дрифт-кары, кастом и тюнинг — в одном
+                  Уникальные машины, дрифт-кары, кастом и тюнинг — в одном
                   месте. От ретро до hi-tech, от stance до muscle. Приходи
                   посмотреть, сфотографировать и пообщаться с владельцами.
                 </p>
