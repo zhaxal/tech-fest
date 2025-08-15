@@ -89,7 +89,7 @@ function Footer() {
                   onClick={() => scrollToElement("yuka")}
                   className={`${gothampro.className} text-sm md:text-base text-[#E6E6E6] opacity-60 hover:text-blue-500 transition-colors duration-200 text-left`}
                 >
-                  YUKA Drive Fest
+                  YUKA DRIVE FEST
                 </button>
                 <button
                   onClick={() => scrollToElement("exhibition")}
