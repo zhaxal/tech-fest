@@ -27,13 +27,19 @@ interface Application {
 }
 
 function ExhibitionApplicationsPage() {
-  const [applications, setApplications] = useState<Application[]>([]);
+  const [pendingApplications, setPendingApplications] = useState<Application[]>(
+    []
+  );
+  const [approvedApplications, setApprovedApplications] = useState<
+    Application[]
+  >([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [processingId, setProcessingId] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [authError, setAuthError] = useState("");
+  const [activeTab, setActiveTab] = useState<"pending" | "approved">("pending");
 
   useEffect(() => {
     // Проверяем, авторизован ли пользователь
@@ -63,30 +69,41 @@ function ExhibitionApplicationsPage() {
   const handleLogout = () => {
     pb.authStore.clear();
     setIsAuthenticated(false);
-    setApplications([]);
+    setPendingApplications([]);
+    setApprovedApplications([]);
   };
 
   const fetchApplications = async () => {
     try {
-      const records = await pb.collection("forms").getFullList({
-        filter: 'type = "exhibition" && approved != true',
+      // Fetch pending applications - exclude both approved and rejected
+      const pendingRecords = await pb.collection("forms").getFullList({
+        filter:
+          'type = "exhibition" && approved != true && status != "rejected"',
         sort: "-created",
       });
 
-      const formattedApplications = records.map((record: any) => ({
-        id: record.id,
-        data:
-          typeof record.data === "string"
-            ? JSON.parse(record.data)
-            : record.data,
-        images: record.images || [],
-        type: record.type,
-        status: record.status || "pending",
-        approved: record.approved || false,
-        created: record.created,
-      }));
+      // Fetch approved applications
+      const approvedRecords = await pb.collection("forms").getFullList({
+        filter: 'type = "exhibition" && approved = true',
+        sort: "-created",
+      });
 
-      setApplications(formattedApplications);
+      const formatApplications = (records: any[]) =>
+        records.map((record: any) => ({
+          id: record.id,
+          data:
+            typeof record.data === "string"
+              ? JSON.parse(record.data)
+              : record.data,
+          images: record.images || [],
+          type: record.type,
+          status: record.status || "pending",
+          approved: record.approved || false,
+          created: record.created,
+        }));
+
+      setPendingApplications(formatApplications(pendingRecords));
+      setApprovedApplications(formatApplications(approvedRecords));
     } catch (error) {
       console.error("Error fetching applications:", error);
 
@@ -117,11 +134,20 @@ function ExhibitionApplicationsPage() {
   const handleApprove = async (id: string) => {
     setProcessingId(id);
     try {
-      await pb.collection("forms").update(id, { 
+      await pb.collection("forms").update(id, {
         status: "approved",
-        approved: true
+        approved: true,
       });
-      setApplications((prev) => prev.filter((app) => app.id !== id));
+
+      // Move from pending to approved
+      const approvedApp = pendingApplications.find((app) => app.id === id);
+      if (approvedApp) {
+        approvedApp.status = "approved";
+        approvedApp.approved = true;
+        setApprovedApplications((prev) => [approvedApp, ...prev]);
+        setPendingApplications((prev) => prev.filter((app) => app.id !== id));
+      }
+
       alert("Заявка одобрена!");
     } catch (error) {
       console.error("Error approving application:", error);
@@ -134,11 +160,11 @@ function ExhibitionApplicationsPage() {
   const handleReject = async (id: string) => {
     setProcessingId(id);
     try {
-      await pb.collection("forms").update(id, { 
+      await pb.collection("forms").update(id, {
         status: "rejected",
-        approved: false
+        approved: false,
       });
-      setApplications((prev) => prev.filter((app) => app.id !== id));
+      setPendingApplications((prev) => prev.filter((app) => app.id !== id));
       alert("Заявка отклонена!");
     } catch (error) {
       console.error("Error rejecting application:", error);
@@ -158,6 +184,148 @@ function ExhibitionApplicationsPage() {
 
     return url;
   };
+
+  const renderApplicationCard = (
+    application: Application,
+    showActions = true
+  ) => (
+    <div
+      key={application.id}
+      className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
+    >
+      <div className="p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Личная информация */}
+          <div className="space-y-4">
+            <h3
+              className={`${fluxgore.className} text-xl text-[#1068B0] border-b border-gray-200 pb-2`}
+            >
+              Информация об участнике
+            </h3>
+            <div className={`${gothampro.className} space-y-3`}>
+              <div className="flex flex-col sm:flex-row sm:items-center">
+                <span className="font-semibold text-gray-700 w-32">Имя:</span>
+                <span className="text-gray-900">{application.data.name}</span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center">
+                <span className="font-semibold text-gray-700 w-32">
+                  Телефон:
+                </span>
+                <span className="text-gray-900">{application.data.phone}</span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center">
+                <span className="font-semibold text-gray-700 w-32">Email:</span>
+                <span className="text-gray-900">{application.data.email}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Информация об автомобиле для выставки */}
+          <div className="space-y-4">
+            <h3
+              className={`${fluxgore.className} text-xl text-[#1068B0] border-b border-gray-200 pb-2`}
+            >
+              Автомобиль для выставки
+            </h3>
+            <div className={`${gothampro.className} space-y-3`}>
+              <div className="flex flex-col sm:flex-row sm:items-center">
+                <span className="font-semibold text-gray-700 w-24">Марка:</span>
+                <span className="text-gray-900">
+                  {application.data.carBrand}
+                </span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center">
+                <span className="font-semibold text-gray-700 w-24">
+                  Модель:
+                </span>
+                <span className="text-gray-900">
+                  {application.data.carModel}
+                </span>
+              </div>
+              {application.data.description && (
+                <div className="flex flex-col">
+                  <span className="font-semibold text-gray-700 mb-1">
+                    Описание:
+                  </span>
+                  <span className="text-gray-900 bg-gray-50 p-3 rounded-lg">
+                    {application.data.description}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Фотографии */}
+        {application.images.length > 0 && (
+          <div className="mt-8 pt-6 border-t border-gray-200">
+            <h3 className={`${fluxgore.className} text-xl text-[#1068B0] mb-6`}>
+              Фотографии для выставки ({application.images.length})
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {application.images.map((image, index) => {
+                const imageUrl = getImageUrl(application, image);
+                return (
+                  <div
+                    key={index}
+                    className="relative cursor-pointer group aspect-square overflow-hidden rounded-lg bg-gray-100"
+                    onClick={() => setSelectedImage(imageUrl)}
+                  >
+                    <Image
+                      src={imageUrl}
+                      alt={`Фото для выставки ${index + 1}`}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-200"
+                    />
+                    <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center">
+                      <div className="bg-white bg-opacity-90 text-gray-800 px-3 py-1 rounded-full text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        Увеличить
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Дата подачи заявки и статус */}
+        <div className="mt-6 pt-4 border-t border-gray-200 flex justify-between items-center">
+          <div className={`${gothampro.className} text-sm text-gray-500`}>
+            Заявка подана:{" "}
+            {new Date(application.created).toLocaleString("ru-RU")}
+          </div>
+          {application.approved && (
+            <div className="flex items-center">
+              <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                Одобрено
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Кнопки действий */}
+      {showActions && (
+        <div className="bg-gray-50 px-8 py-4 flex gap-4 justify-end">
+          <button
+            onClick={() => handleReject(application.id)}
+            disabled={processingId === application.id}
+            className={`${fluxgore.className} bg-red-600 hover:bg-red-700 disabled:bg-red-400 text-white px-6 py-2 text-sm font-medium uppercase tracking-wide rounded-lg transition-colors duration-200`}
+          >
+            {processingId === application.id ? "Обработка..." : "Отклонить"}
+          </button>
+          <button
+            onClick={() => handleApprove(application.id)}
+            disabled={processingId === application.id}
+            className={`${fluxgore.className} bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white px-6 py-2 text-sm font-medium uppercase tracking-wide rounded-lg transition-colors duration-200`}
+          >
+            {processingId === application.id ? "Обработка..." : "Принять"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
 
   // Форма авторизации
   if (!isAuthenticated) {
@@ -284,13 +452,77 @@ function ExhibitionApplicationsPage() {
         </div>
       </div>
 
+      {/* Tabs */}
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex border-b border-gray-200">
+          <button
+            onClick={() => setActiveTab("pending")}
+            className={`${
+              fluxgore.className
+            } px-6 py-3 font-medium text-sm transition-colors duration-200 border-b-2 ${
+              activeTab === "pending"
+                ? "border-blue-500 text-blue-600"
+                : "border-transparent text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            Ожидающие ({pendingApplications.length})
+          </button>
+          <button
+            onClick={() => setActiveTab("approved")}
+            className={`${
+              fluxgore.className
+            } px-6 py-3 font-medium text-sm transition-colors duration-200 border-b-2 ${
+              activeTab === "approved"
+                ? "border-green-500 text-green-600"
+                : "border-transparent text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            Одобренные ({approvedApplications.length})
+          </button>
+        </div>
+      </div>
+
       {/* Content */}
       <div className="max-w-7xl mx-auto px-6 py-8">
-        {applications.length === 0 ? (
+        {activeTab === "pending" ? (
+          pendingApplications.length === 0 ? (
+            <div className="text-center py-16">
+              <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg
+                  className="w-8 h-8 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </div>
+              <h3
+                className={`${fluxgore.className} text-xl text-gray-900 mb-2`}
+              >
+                Нет ожидающих заявок
+              </h3>
+              <p className={`${gothampro.className} text-gray-500`}>
+                Все заявки обработаны
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {pendingApplications.map((application) =>
+                renderApplicationCard(application, true)
+              )}
+            </div>
+          )
+        ) : approvedApplications.length === 0 ? (
           <div className="text-center py-16">
-            <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
               <svg
-                className="w-8 h-8 text-gray-400"
+                className="w-8 h-8 text-green-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -299,168 +531,22 @@ function ExhibitionApplicationsPage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
             </div>
             <h3 className={`${fluxgore.className} text-xl text-gray-900 mb-2`}>
-              Нет заявок
+              Нет одобренных заявок
             </h3>
             <p className={`${gothampro.className} text-gray-500`}>
-              Пока нет заявок на выставку для модерации
+              Пока нет одобренных заявок
             </p>
           </div>
         ) : (
           <div className="space-y-6">
-            {applications.map((application) => (
-              <div
-                key={application.id}
-                className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200"
-              >
-                <div className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Личная информация */}
-                    <div className="space-y-4">
-                      <h3
-                        className={`${fluxgore.className} text-xl text-[#1068B0] border-b border-gray-200 pb-2`}
-                      >
-                        Информация об участнике
-                      </h3>
-                      <div className={`${gothampro.className} space-y-3`}>
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <span className="font-semibold text-gray-700 w-32">
-                            Имя:
-                          </span>
-                          <span className="text-gray-900">
-                            {application.data.name}
-                          </span>
-                        </div>
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <span className="font-semibold text-gray-700 w-32">
-                            Телефон:
-                          </span>
-                          <span className="text-gray-900">
-                            {application.data.phone}
-                          </span>
-                        </div>
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <span className="font-semibold text-gray-700 w-32">
-                            Email:
-                          </span>
-                          <span className="text-gray-900">
-                            {application.data.email}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Информация об автомобиле для выставки */}
-                    <div className="space-y-4">
-                      <h3
-                        className={`${fluxgore.className} text-xl text-[#1068B0] border-b border-gray-200 pb-2`}
-                      >
-                        Автомобиль для выставки
-                      </h3>
-                      <div className={`${gothampro.className} space-y-3`}>
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <span className="font-semibold text-gray-700 w-24">
-                            Марка:
-                          </span>
-                          <span className="text-gray-900">
-                            {application.data.carBrand}
-                          </span>
-                        </div>
-                        <div className="flex flex-col sm:flex-row sm:items-center">
-                          <span className="font-semibold text-gray-700 w-24">
-                            Модель:
-                          </span>
-                          <span className="text-gray-900">
-                            {application.data.carModel}
-                          </span>
-                        </div>
-                        {application.data.description && (
-                          <div className="flex flex-col">
-                            <span className="font-semibold text-gray-700 mb-1">
-                              Описание:
-                            </span>
-                            <span className="text-gray-900 bg-gray-50 p-3 rounded-lg">
-                              {application.data.description}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Фотографии */}
-                  {application.images.length > 0 && (
-                    <div className="mt-8 pt-6 border-t border-gray-200">
-                      <h3
-                        className={`${fluxgore.className} text-xl text-[#1068B0] mb-6`}
-                      >
-                        Фотографии для выставки ({application.images.length})
-                      </h3>
-                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {application.images.map((image, index) => {
-                          const imageUrl = getImageUrl(application, image);
-                          return (
-                            <div
-                              key={index}
-                              className="relative cursor-pointer group aspect-square overflow-hidden rounded-lg bg-gray-100"
-                              onClick={() => setSelectedImage(imageUrl)}
-                            >
-                              <Image
-                                src={imageUrl}
-                                alt={`Фото для выставки ${index + 1}`}
-                                fill
-                                className="object-cover group-hover:scale-105 transition-transform duration-200"
-                              />
-                              <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center">
-                                <div className="bg-white bg-opacity-90 text-gray-800 px-3 py-1 rounded-full text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                  Увеличить
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Дата подачи заявки */}
-                  <div className="mt-6 pt-4 border-t border-gray-200">
-                    <div
-                      className={`${gothampro.className} text-sm text-gray-500`}
-                    >
-                      Заявка подана:{" "}
-                      {new Date(application.created).toLocaleString("ru-RU")}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Кнопки действий */}
-                <div className="bg-gray-50 px-8 py-4 flex gap-4 justify-end">
-                  <button
-                    onClick={() => handleReject(application.id)}
-                    disabled={processingId === application.id}
-                    className={`${fluxgore.className} bg-red-600 hover:bg-red-700 disabled:bg-red-400 text-white px-6 py-2 text-sm font-medium uppercase tracking-wide rounded-lg transition-colors duration-200`}
-                  >
-                    {processingId === application.id
-                      ? "Обработка..."
-                      : "Отклонить"}
-                  </button>
-                  <button
-                    onClick={() => handleApprove(application.id)}
-                    disabled={processingId === application.id}
-                    className={`${fluxgore.className} bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white px-6 py-2 text-sm font-medium uppercase tracking-wide rounded-lg transition-colors duration-200`}
-                  >
-                    {processingId === application.id
-                      ? "Обработка..."
-                      : "Принять"}
-                  </button>
-                </div>
-              </div>
-            ))}
+            {approvedApplications.map((application) =>
+              renderApplicationCard(application, false)
+            )}
           </div>
         )}
       </div>
