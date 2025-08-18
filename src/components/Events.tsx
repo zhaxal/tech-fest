@@ -76,6 +76,7 @@ function Events() {
       }}
     >
       <img
+        id="yuka"
         className="absolute top-0 w-full object-cover"
         src="/images/events/paper_tear.png"
         alt="Paper tear"
@@ -99,7 +100,6 @@ function Events() {
         <div className="flex flex-col space-y-4 md:space-y-7 mt-16 md:mt-36">
           <EventCard
             disabled={false}
-            id="yuka"
             image="/events/yuka.png"
             title="YUKA DRIVE FEST Джимхана"
             description={
