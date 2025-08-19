@@ -96,10 +96,25 @@ function Partners() {
             alt="Ctvs Logo"
           />
           <img
+            src="/logos/xenum.svg"
+            className="w-auto h-16 sm:h-20 lg:h-24 object-contain hover:scale-110 transition-transform duration-300"
+            alt="Xenum Logo"
+          />
+          <img
+            src="/logos/GNVOil.svg"
+            className="w-auto h-16 sm:h-20 lg:h-24 object-contain hover:scale-110 transition-transform duration-300"
+            alt="GNVOil Logo"
+          />
+          <img
+            src="/logos/Q8oils.svg"
+            className="w-auto h-16 sm:h-20 lg:h-24 object-contain hover:scale-110 transition-transform duration-300"
+            alt="Q8oils Logo"
+          />
+          {/* <img
             src="/logos/smp.png"
             className="w-auto h-16 sm:h-20 lg:h-24 object-contain hover:scale-110 transition-transform duration-300"
             alt="SMP Logo"
-          />
+          /> */}
         </div>
 
         <div
