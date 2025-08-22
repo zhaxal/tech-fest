@@ -183,7 +183,7 @@ function Events() {
                 </p>
               </>
             }
-            link="/forms/exhibition"
+            link="https://t.me/TechSportFestbot"
           />
           {/* <EventCard
             disabled={true}
