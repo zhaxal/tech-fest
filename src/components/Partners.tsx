@@ -110,6 +110,11 @@ function Partners() {
             className="w-auto h-16 sm:h-20 lg:h-24 object-contain hover:scale-110 transition-transform duration-300"
             alt="Q8oils Logo"
           />
+          <img
+            src="/logos/IMG_3601.png"
+            className="w-auto h-16 sm:h-20 lg:h-24 object-contain hover:scale-110 transition-transform duration-300"
+            alt="Q8oils Logo"
+          />
           {/* <img
             src="/logos/smp.png"
             className="w-auto h-16 sm:h-20 lg:h-24 object-contain hover:scale-110 transition-transform duration-300"
