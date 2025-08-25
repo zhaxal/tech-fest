@@ -140,7 +140,7 @@ function Navbar() {
             <ul className="space-y-4 uppercase text-base mb-6">
               <li>
                 <Link
-                  href="/"
+                  href="#info"
                   className="block py-2 hover:text-gray-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -158,7 +158,7 @@ function Navbar() {
               </li> */}
               <li>
                 <Link
-                  href="/events"
+                  href="#events"
                   className="block py-2 hover:text-gray-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -167,7 +167,7 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href="#activities"
                   className="block py-2 hover:text-gray-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
