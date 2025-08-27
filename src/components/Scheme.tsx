@@ -26,7 +26,7 @@ function SchemeSelect({
   active = false,
   onClick,
 }: SchemeSelectProps) {
-  const baseClasses = `${fluxgore.className} leading-none cursor-pointer transition-all duration-300 ease-in-out hover:opacity-80 transform hover:scale-105 uppercase`;
+  const baseClasses = `${fluxgore.className} leading-none cursor-pointer uppercase`;
   const activeClasses = "text-[#1E1E1E] text-2xl md:text-4xl";
   const inactiveClasses =
     "text-[#0D0D0D] text-base md:text-xl opacity-50 self-end";
