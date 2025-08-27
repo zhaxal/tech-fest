@@ -2,6 +2,7 @@
 import { gothampro } from "@/utils/fonts";
 import Button from "./Button";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 function Info() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -54,14 +55,17 @@ function Info() {
       <div
         ref={containerRef}
         className="bg-[#161616] relative overflow-hidden px-4"
-        style={{
-          backgroundImage: `url('/images/noise.svg')`,
-          backgroundSize: "cover",
-          backgroundRepeat: "repeat",
-          backgroundBlendMode: "overlay",
-        }}
       >
-        <div className="container mx-auto pt-36">
+        {/* Background noise pattern */}
+        <Image
+          src="/images/noise.svg"
+          alt=""
+          fill
+          className="object-cover opacity-50 mix-blend-overlay"
+          quality={75}
+        />
+
+        <div className="container mx-auto pt-36 relative z-10">
           <div
             ref={addToRefs}
             className="flex flex-row opacity-0 translate-y-8 transition-all duration-700"
@@ -139,37 +143,47 @@ function Info() {
           </div>
         </div>
 
-        <div className="container mx-auto flex flex-col md:flex-row pt-12 md:pt-24 pb-28 md:pb-56 gap-4 md:gap-0">
+        <div className="container mx-auto flex flex-col md:flex-row pt-12 md:pt-24 pb-28 md:pb-56 gap-4 md:gap-0 relative z-10">
           <div
             ref={addToRefs}
             className="w-full md:w-1/3 flex justify-center md:justify-start opacity-0 translate-y-8 transition-all duration-700 delay-700"
           >
-            <img
-              src="/images/info/moto.png"
-              alt="moto"
-              className="w-3/4 md:w-1/2 h-auto object-cover hover:scale-105 transition-transform duration-300"
-            />
+            <div className="w-3/4 md:w-1/2 relative hover:scale-105 transition-transform duration-300">
+              <Image
+                src="/images/info/moto.png"
+                alt="moto"
+                width={400}
+                height={300}
+                className="w-full h-auto object-cover"
+              />
+            </div>
           </div>
           <div
             ref={addToRefs}
             className="w-full md:w-1/3 flex justify-center opacity-0 translate-y-8 transition-all duration-700 delay-900"
           >
-            <img
-              src="/images/info/podium.jpg"
-              alt="car"
-              className="w-3/4 md:w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
-            />
+            <div className="w-3/4 md:w-full relative hover:scale-105 transition-transform duration-300">
+              <Image
+                src="/images/info/podium.jpg"
+                alt="car"
+                width={500}
+                height={400}
+                className="w-full h-auto object-cover"
+              />
+            </div>
           </div>
           <div
             ref={addToRefs}
             className="flex w-full md:w-1/3 justify-center md:justify-start opacity-0 translate-y-8 transition-all duration-700 delay-1000"
           >
             <div className="w-0 md:w-1/3"></div>
-            <div className="w-3/4 md:w-2/3">
-              <img
+            <div className="w-3/4 md:w-2/3 relative hover:scale-105 transition-transform duration-300">
+              <Image
                 src="/images/info/jump.png"
                 alt="jump"
-                className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
+                width={400}
+                height={300}
+                className="w-full h-auto object-cover"
               />
             </div>
           </div>

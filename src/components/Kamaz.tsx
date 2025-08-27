@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { fluxgore } from "@/utils/fonts";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 function Kamaz() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -53,16 +54,17 @@ function Kamaz() {
   };
 
   return (
-    <div
-      className="bg-[#161616] relative md:pt-64 pb-16 md:pb-32"
-      style={{
-        backgroundImage: `url('/images/noise.svg')`,
-        backgroundSize: "cover",
-        backgroundRepeat: "repeat",
-        backgroundBlendMode: "overlay",
-      }}
-    >
-      <div className="container mx-auto px-4 max-w-7xl">
+    <div className="bg-[#161616] relative md:pt-64 pb-16 md:pb-32">
+      {/* Background noise pattern */}
+      <Image
+        src="/images/noise.svg"
+        alt=""
+        fill
+        className="object-cover opacity-50 mix-blend-overlay"
+        quality={75}
+      />
+
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
         <div
           ref={containerRef}
           className="flex flex-col lg:flex-row gap-8 lg:gap-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
@@ -81,16 +83,20 @@ function Kamaz() {
           className="mt-12 md:mt-16 opacity-0 translate-y-8 transition-all duration-700 delay-300 ease-out"
         >
           <div className="relative group">
-            <img
-              src="/images/kamaz.webp"
-              alt="Tech Festival - Previous Event Highlights"
-              className="w-full h-auto max-h-[600px] object-cover shadow-2xl"
-              style={{
-                clipPath:
-                  "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)",
-              }}
-              loading="lazy"
-            />
+            <div className="relative w-full max-h-[600px] aspect-[16/9]">
+              <Image
+                src="/images/kamaz.webp"
+                alt="Tech Festival - Previous Event Highlights"
+                fill
+                className="object-cover shadow-2xl"
+                style={{
+                  clipPath:
+                    "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)",
+                }}
+                loading="lazy"
+                quality={85}
+              />
+            </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none rounded-lg" />
           </div>
         </div>

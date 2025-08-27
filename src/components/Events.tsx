@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @next/next/no-img-element */
 import { fluxgore, gothampro } from "@/utils/fonts";
 import Button from "./Button";
 import { useRouter } from "next/router";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface EventCardProps extends React.HTMLAttributes<HTMLDivElement> {
   image: string;
@@ -33,12 +33,15 @@ function EventCard(props: EventCardProps) {
       id={props.id}
       className="flex flex-col md:flex-row bg-[#272727] py-5 px-2.5 md:py-5 md:px-2.5 p-4"
     >
-      <div className="w-full md:w-1/3 mb-4 md:mb-0">
-        <img
-          className="w-full md:w-2/3 h-auto object-cover rounded"
-          src={props.image}
-          alt={props.title}
-        />
+      <div className="w-full md:w-1/3 mb-4 md:mb-0 relative">
+        <div className="w-full md:w-2/3 aspect-video relative">
+          <Image
+            src={props.image}
+            alt={props.title}
+            fill
+            className="object-cover rounded"
+          />
+        </div>
       </div>
       <div className="w-full md:w-1/3 mb-4 md:mb-0 md:px-4">
         <h2
@@ -68,21 +71,30 @@ function Events() {
     <div
       id="events"
       className="bg-[#161616] relative pt-32 md:pt-64 pb-16 md:pb-32"
-      style={{
-        backgroundImage: `url('/images/noise.svg')`,
-        backgroundSize: "cover",
-        backgroundRepeat: "repeat",
-        backgroundBlendMode: "overlay",
-      }}
     >
-      <img
-        id="yuka"
-        className="absolute top-0 w-full object-cover"
-        src="/images/events/paper_tear.png"
-        alt="Paper tear"
+      {/* Background noise pattern */}
+      <Image
+        src="/images/noise.svg"
+        alt=""
+        fill
+        className="object-cover opacity-50 mix-blend-overlay"
+        quality={75}
       />
 
-      <div className="container mx-auto px-4">
+      {/* Paper tear image */}
+      <div className="absolute top-0 w-full">
+        <Image
+          id="yuka"
+          src="/images/events/paper_tear.png"
+          alt="Paper tear"
+          width={1920}
+          height={200}
+          className="w-full object-cover"
+          priority
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:justify-between space-y-6 md:space-y-0">
           <h1
             className={`${fluxgore.className} text-4xl md:text-7xl text-white relative uppercase`}
@@ -185,35 +197,6 @@ function Events() {
             }
             link="https://t.me/TechSportFestbot"
           />
-          {/* <EventCard
-            disabled={true}
-            id="moto"
-            image="/events/moto.png"
-            title="КуБок ШОС по Мотокроссу"
-            description={
-              <>
-                <p>
-                  Уникальная возможность увидеть настоящую битву моторов и
-                  мастерства на трассе.
-                </p>
-                <br />
-
-                <p>
-                  Лучшие гонщики со всего мира соберутся, чтобы
-                  продемонстрировать невероятные прыжки, головокружительные
-                  виражи и бескомпромиссную борьбу за победу.
-                </p>
-                <br />
-
-                <p>
-                  Приготовьтесь к взрыву адреналина и незабываемым эмоциям, ведь
-                  Кубок ШОС по Мотокроссу обещает стать одним из самых ярких
-                  зрелищ фестиваля!
-                </p>
-              </>
-            }
-            link="#"
-          /> */}
           <EventCard
             disabled={true}
             image="/events/cart.png"

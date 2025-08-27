@@ -3,6 +3,7 @@ import { fluxgore } from "@/utils/fonts";
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
+import Image from "next/image";
 
 import "swiper/css";
 
@@ -35,7 +36,13 @@ function SwiperButton({
       `}
       aria-label={direction === "next" ? "Next slide" : "Previous slide"}
     >
-      <img src={iconPath} alt="" className={`w-4 h-4 sm:w-5 sm:h-5`} />
+      <Image
+        src={iconPath}
+        alt=""
+        width={20}
+        height={20}
+        className={`w-4 h-4 sm:w-5 sm:h-5`}
+      />
     </button>
   );
 }
@@ -46,17 +53,24 @@ function Slide({ title, imageSrc }: { title: string; imageSrc: string }) {
       <h2 className={`${fluxgore.className} text-2xl sm:text-3xl lg:text-4xl text-white leading-none uppercase`}>
         {title}
       </h2>
-      <img
-        className="w-full h-auto object-cover mt-4 sm:mt-7"
-        src={imageSrc}
-        alt="Slide Image"
-      />
+      <div className="w-full relative mt-4 sm:mt-7 aspect-video">
+        <Image
+          src={imageSrc}
+          alt={title}
+          fill
+          className="object-cover"
+        />
+      </div>
 
-      <img
-        className="absolute top-full left-0 w-full h-auto object-cover"
-        src="/images/activities/paper_tear.png"
-        alt="Background Tear"
-      />
+      <div className="absolute top-full left-0 w-full">
+        <Image
+          src="/images/activities/paper_tear.png"
+          alt="Background Tear"
+          width={400}
+          height={50}
+          className="w-full h-auto object-cover"
+        />
+      </div>
     </div>
   );
 }
@@ -152,7 +166,6 @@ function Activities() {
                 imageSrc="/images/activities/race_taxi.png"
               />
             </SwiperSlide>
-
           </Swiper>
         </div>
       </div>

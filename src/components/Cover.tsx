@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { fluxgore } from "@/utils/fonts";
 import Button from "./Button";
+import Image from "next/image";
 
 interface CoverHeadingProps {
   children: React.ReactNode;
@@ -94,63 +95,68 @@ function DateBox() {
 
 function Cover() {
   return (
-    <div
-      className="bg-cover bg-center bg-no-repeat relative justify-center items-center py-36 animate-fade-in"
-      style={{ backgroundImage: "url('/images/KV.png')" }}
-    >
-      <div className="container mx-auto mb-24">
-        {/* Top row with ФЕСТИВАЛЬ and date box */}
-        <div className="flex align-center justify-center pb-7 md:hidden">
-          <DateBox />
-        </div>
+    <div className="relative justify-center items-center py-36 animate-fade-in">
+      {/* Background Image */}
+      <Image
+        src="/images/KV.png"
+        alt="Tech fest background"
+        fill
+        className="object-cover object-center"
+        priority
+        quality={85}
+      />
 
-        {/* <div className="flex align-center justify-center pb-7 md:hidden">
-          <DateBox />
-        </div>
-        <div className="flex flex-row items-center space-x-16">
-          <CoverHeading>ФЕСТИВАЛЬ</CoverHeading>
-          <div className="hidden md:block">
+      {/* Content overlay */}
+      <div className="relative z-10">
+        <div className="container mx-auto mb-24">
+          {/* Top row with ФЕСТИВАЛЬ and date box */}
+          <div className="flex align-center justify-center pb-7 md:hidden">
             <DateBox />
+          </div>
+
+          <div className="flex justify-center">
+            <Image
+              src="/images/cover_text.png"
+              alt="Фестиваль технических видов спорта 2025"
+              width={768}
+              height={400}
+              className="w-full max-w-3xl mx-auto hidden md:block animate-slide-in-left"
+              style={{
+                animationDelay: "0.2s",
+                animationFillMode: "both",
+              }}
+              priority
+            />
+
+            <Image
+              src="/images/cover_text_mobile.png"
+              alt="Фестиваль технических видов спорта 2025"
+              width={576}
+              height={300}
+              className="w-full max-w-3xl mx-auto md:hidden animate-slide-in-left"
+              style={{
+                animationDelay: "0.2s",
+                animationFillMode: "both",
+              }}
+              priority
+            />
           </div>
         </div>
 
-        <CoverHeading textPosition="right">ТЕХНИЧЕСКИХ</CoverHeading>
-
-        <CoverHeading>ВИДОВ СПОРТА</CoverHeading> */}
-        <img
-          src="/images/cover_text.png"
-          alt="Фестиваль технических видов спорта 2025"
-          className="w-full max-w-3xl mx-auto hidden md:block animate-slide-in-left"
-          style={{
-            animationDelay: "0.2s",
-            animationFillMode: "both",
-          }}
-        />
-
-        <img
-          src="/images/cover_text_mobile.png"
-          alt="Фестиваль технических видов спорта 2025"
-          className="w-full max-w-3xl mx-auto md:hidden animate-slide-in-left"
-          style={{
-            animationDelay: "0.2s",
-            animationFillMode: "both",
-          }}
-        />
-      </div>
-
-      <div className="flex justify-center items-center">
-        {/* <Button
-          onClick={() => {
-            window.location.href = "/about";
-          }}
-          className="animate-pulse-glow hover:animate-none transition-all duration-300 hover:scale-105"
-          style={{
-            animationDelay: "0.8s",
-            animationFillMode: "both",
-          }}
-        >
-          смотреть карту
-        </Button> */}
+        <div className="flex justify-center items-center">
+          {/* <Button
+            onClick={() => {
+              window.location.href = "/about";
+            }}
+            className="animate-pulse-glow hover:animate-none transition-all duration-300 hover:scale-105"
+            style={{
+              animationDelay: "0.8s",
+              animationFillMode: "both",
+            }}
+          >
+            смотреть карту
+          </Button> */}
+        </div>
       </div>
 
       <style jsx>{`
@@ -237,26 +243,36 @@ function Cover() {
 
 function CoverSoon() {
   return (
-    <div
-      className="bg-cover bg-center bg-no-repeat relative justify-center items-center py-36"
-      style={{ backgroundImage: "url('/images/KV.png')" }}
-    >
-      <div className="container mx-auto max-w-5/7 mb-24">
-        {/* Top row with ФЕСТИВАЛЬ and date box */}
-        <div className="flex flex-row items-center space-x-16">
-          <CoverHeading>ФЕСТИВАЛЬ</CoverHeading>
-          <div className="hidden md:block">
-            <DateBox />
+    <div className="relative justify-center items-center py-36">
+      {/* Background Image */}
+      <Image
+        src="/images/KV.png"
+        alt="Tech fest background"
+        fill
+        className="object-cover object-center"
+        priority
+        quality={85}
+      />
+
+      {/* Content overlay */}
+      <div className="relative z-10">
+        <div className="container mx-auto max-w-5/7 mb-24">
+          {/* Top row with ФЕСТИВАЛЬ and date box */}
+          <div className="flex flex-row items-center space-x-16">
+            <CoverHeading>ФЕСТИВАЛЬ</CoverHeading>
+            <div className="hidden md:block">
+              <DateBox />
+            </div>
           </div>
+
+          <CoverHeading textPosition="right">ТЕХНИЧЕСКИХ</CoverHeading>
+
+          <CoverHeading>ВИДОВ СПОРТА</CoverHeading>
         </div>
 
-        <CoverHeading textPosition="right">ТЕХНИЧЕСКИХ</CoverHeading>
-
-        <CoverHeading>ВИДОВ СПОРТА</CoverHeading>
-      </div>
-
-      <div className="flex justify-center items-center">
-        <Button disabled>скоро</Button>
+        <div className="flex justify-center items-center">
+          <Button disabled>скоро</Button>
+        </div>
       </div>
     </div>
   );

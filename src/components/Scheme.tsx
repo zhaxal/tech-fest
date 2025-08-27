@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { fluxgore, gothampro } from "@/utils/fonts";
 import Button from "./Button";
+import Image from "next/image";
 import { ReactNode, useState, useMemo } from "react";
 
 interface ScheduleData {
@@ -125,11 +126,16 @@ function Scheme({ scheduleData = [] }: SchemeProps) {
           </p>
         </div>
 
-        <img
-          src="/images/scheme/map.png"
-          alt="Festival Map"
-          className="mt-10 md:mt-20 w-full h-auto"
-        />
+        <div className="mt-10 md:mt-20 w-full relative">
+          <Image
+            src="/images/scheme/map.png"
+            alt="Festival Map"
+            width={1200}
+            height={800}
+            className="w-full h-auto"
+            priority
+          />
+        </div>
 
         {/* Date Selection */}
         <div className="flex flex-col md:flex-row mt-10 md:mt-40 space-y-3 md:space-y-0 md:space-x-5 items-center justify-center">
