@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import Partners from "@/components/Partners";
 import Scheme from "@/components/Scheme";
 import Video from "@/components/Video";
+import Kamaz from "@/components/Kamaz";
 
 import Head from "next/head";
 
@@ -399,6 +400,7 @@ export default function Home() {
         <Video />
         <Scheme scheduleData={csvData} />
         <Events />
+        <Kamaz />
         <Activities />
         <Partners />
         <Map />
