@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import Partners from "@/components/Partners";
 import Scheme from "@/components/Scheme";
 import Video from "@/components/Video";
+import Kamaz from "@/components/Kamaz";
 import Head from "next/head";
 
 export default function Home() {
@@ -392,12 +393,14 @@ export default function Home() {
         <title>Фестиваль технических видов спорта</title>
       </Head>
       <Navbar />
-      <main className="flex-col min-h-full">
+      <main className="flex-col min-h-full bg-[#161616]">
         <Cover />
         <Info />
         <Video />
         <Scheme scheduleData={csvData} />
+
         <Events />
+        <Kamaz />
         <Activities />
         <Partners />
         <Map />
