@@ -141,7 +141,7 @@ function Events() {
             link="https://yukafest.ru/pilots/"
           />
           <EventCard
-            disabled={false}
+            disabled={true}
             id="moscow_fight"
             image="/events/moscow_fight.png"
             title="Дрифт «Битва за Москву»"

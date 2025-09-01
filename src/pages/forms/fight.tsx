@@ -32,8 +32,10 @@ function FightFormPage() {
   });
   const [carPhotos, setCarPhotos] = useState<File[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // Add a key to force re-render of Fileupload component
   const [fileUploadKey, setFileUploadKey] = useState(0);
+  
+  // Add registration disabled state
+  const isRegistrationDisabled = true;
 
   const { value: phoneValue, handleChange: handlePhoneChange } = usePhoneMask();
 
@@ -46,6 +48,11 @@ function FightFormPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isRegistrationDisabled) {
+      alert("Регистрация временно закрыта");
+      return;
+    }
 
     if (!checkboxValues.includes("terms")) {
       alert("Необходимо согласие на обработку персональных данных");
@@ -126,7 +133,15 @@ function FightFormPage() {
         Регистрация на Битву за Москву
       </h1>
 
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl w-full">
+      {isRegistrationDisabled && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6 max-w-2xl w-full">
+          <p className={`${gothampro.className} text-center`}>
+            Регистрация временно закрыта
+          </p>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className={`space-y-6 max-w-2xl w-full ${isRegistrationDisabled ? 'opacity-50 pointer-events-none' : ''}`}>
         <Input
           label="Фамилия"
           placeholder="Введите вашу фамилию"
@@ -275,10 +290,10 @@ function FightFormPage() {
 
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || isRegistrationDisabled}
           className={`${fluxgore.className} bg-[#1068B0] hover:bg-[#0d5a96] text-white px-9 py-4 text-base font-medium uppercase tracking-wide disabled:opacity-50 w-full`}
         >
-          {isSubmitting ? "Отправка..." : "Отправить"}
+          {isRegistrationDisabled ? "Регистрация закрыта" : isSubmitting ? "Отправка..." : "Отправить"}
         </button>
       </form>
     </div>
