@@ -160,12 +160,12 @@ function Activities() {
                 imageSrc="/images/activities/taxi.jpg"
               />
             </SwiperSlide>
-            <SwiperSlide>
+            {/* <SwiperSlide>
               <Slide
                 title="SMP Race такси"
                 imageSrc="/images/activities/race_taxi.png"
               />
-            </SwiperSlide>
+            </SwiperSlide> */}
           </Swiper>
         </div>
       </div>
