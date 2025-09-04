@@ -101,7 +101,16 @@ function Cover() {
         src="/images/KV.png"
         alt="Tech fest background"
         fill
-        className="object-cover object-center"
+        className="object-cover object-center hidden md:block"
+        priority
+        quality={85}
+      />
+      
+      <Image
+        src="/images/KV_mobile.png"
+        alt="Tech fest background mobile"
+        fill
+        className="object-cover object-center md:hidden"
         priority
         quality={85}
       />
