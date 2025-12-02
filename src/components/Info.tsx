@@ -102,7 +102,7 @@ function Info() {
             ref={addToRefs}
             className="flex flex-row mt-8 opacity-0 translate-y-8 transition-all duration-700 delay-300"
           >
-            <div className="flex-1 basis-1/3"></div>
+            {/* <div className="flex-1 basis-1/3"></div>
 
             <div className="flex-col max-w-2/3">
               <p className="text-white text-base md:text-base font-normal md:max-w-2/5">
@@ -117,7 +117,7 @@ function Info() {
                 Благодаря новым партнерам, праздник будет еще ярче. Приходите
                 всей семьей и получите незабываемые впечатления!
               </p>
-            </div>
+            </div> */}
           </div>
 
           <div

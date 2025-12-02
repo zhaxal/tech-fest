@@ -608,10 +608,10 @@ export default function Home() {
         <Cover />
         <Info />
         <Video />
-        <Scheme scheduleData={csvData} />
-        <Events />
-        <Kamaz />
-        <Activities />
+        {/* <Scheme scheduleData={csvData} /> */}
+        {/* <Events /> */}
+        {/* <Kamaz /> */}
+        {/* <Activities /> */}
         <Partners />
         <Map />
       </main>

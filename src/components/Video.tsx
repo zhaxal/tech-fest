@@ -150,11 +150,11 @@ function Video() {
         </div>
       </div>
 
-      <img
+      {/* <img
         className="absolute bottom-0 object-cover w-full"
         src="/images/video/paper_tear.png"
         alt="Paper tear"
-      />
+      /> */}
     </div>
   );
 }
