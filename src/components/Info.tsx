@@ -92,7 +92,7 @@ function Info() {
 
             <div className="flex-col max-w-10/12">
               <p className="text-white text-base md:text-4xl font-normal">
-                Организованный Департаментом спорта города Москвы и РАФ, он объединяет
+                Организованный Департаментом спорта города Москвы, он объединяет
                 фанатов скорости и семьи.
               </p>
             </div>

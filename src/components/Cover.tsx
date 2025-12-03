@@ -105,7 +105,7 @@ function Cover() {
         priority
         quality={85}
       />
-      
+
       <Image
         src="/images/KV_mobile.png"
         alt="Tech fest background mobile"
@@ -146,6 +146,22 @@ function Cover() {
               style={{
                 animationDelay: "0.2s",
                 animationFillMode: "both",
+              }}
+              priority
+            />
+          </div>
+
+          <div className="flex justify-end mt-10 md:mt-0">
+            <Image
+              src="/images/danger.png"
+              alt="free_entry"
+              width={265}
+              height={232}
+              className="w-32 md:w-40 animate-slide-in-left"
+              style={{
+                animationDelay: "0.4s",
+                animationFillMode: "both",
+                transform: "rotate(15deg)",
               }}
               priority
             />
@@ -218,7 +234,8 @@ function Cover() {
         }
 
         @keyframes pulse-glow {
-          0%, 100% {
+          0%,
+          100% {
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
           }
           50% {
