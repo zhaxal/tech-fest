@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { fluxgore, gothampro } from "@/utils/fonts";
-import { useEffect, useRef } from "react";
 
 interface VideoStatsProps {
   number: string;
@@ -27,34 +26,6 @@ function VideoStats(props: VideoStatsProps) {
 }
 
 function Video() {
-  const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in-up");
-            entry.target.classList.remove("opacity-0", "translate-y-8");
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-
-    elementsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const addToRefs = (el: HTMLDivElement | null) => {
-    if (el && !elementsRef.current.includes(el)) {
-      elementsRef.current.push(el);
-    }
-  };
-
   return (
     <div
       className="bg-[#161616] relative overflow-hidden pt-10 md:pt-20"
@@ -65,22 +36,6 @@ function Video() {
         backgroundBlendMode: "overlay",
       }}
     >
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fadeInUp 0.6s ease-out forwards;
-        }
-      `}</style>
-
       <img
         className="absolute top-0 right-0 object-cover"
         src="/images/video/arrows.svg"
@@ -88,10 +43,7 @@ function Video() {
       />
 
       <div className="container mx-auto px-4">
-        <div
-          ref={addToRefs}
-          className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-16 opacity-0 translate-y-8 transition-all duration-700"
-        >
+        <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-16">
           <h1
             className={`${fluxgore.className} text-4xl md:text-7xl text-white relative uppercase`}
           >
@@ -107,10 +59,7 @@ function Video() {
           </p>
         </div>
 
-        <div
-          ref={addToRefs}
-          className="flex mt-8 md:mt-14 opacity-0 translate-y-8 transition-all duration-700 delay-200"
-        >
+        <div className="flex mt-8 md:mt-14">
           <iframe
             src="https://vkvideo.ru/video_ext.php?oid=-23293707&id=456242039&hd=2"
             frameBorder="0"
@@ -125,10 +74,7 @@ function Video() {
           ></iframe>
         </div>
 
-        <div
-          ref={addToRefs}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-24 mt-16 md:mt-36 pb-32 md:pb-64 opacity-0 translate-y-8 transition-all duration-700 delay-500"
-        >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-24 mt-16 md:mt-36 pb-32 md:pb-64">
           <div className="hover:scale-105 transition-transform duration-300">
             <VideoStats number="260" label="[ единиц техники ]" />
           </div>
@@ -149,12 +95,6 @@ function Video() {
           </div>
         </div>
       </div>
-
-      {/* <img
-        className="absolute bottom-0 object-cover w-full"
-        src="/images/video/paper_tear.png"
-        alt="Paper tear"
-      /> */}
     </div>
   );
 }

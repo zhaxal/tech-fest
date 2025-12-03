@@ -1,38 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { fluxgore } from "@/utils/fonts";
 import Button from "./Button";
-import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 function Partners() {
-  const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in-up");
-            entry.target.classList.remove("opacity-0", "translate-y-8");
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-
-    elementsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const addToRefs = (el: HTMLDivElement | null) => {
-    if (el && !elementsRef.current.includes(el)) {
-      elementsRef.current.push(el);
-    }
-  };
-
   return (
     <div id="partners" className="bg-[#161616] relative py-16 sm:py-32 lg:py-52">
       {/* Background noise pattern */}
@@ -44,27 +15,8 @@ function Partners() {
         quality={75}
       />
 
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fadeInUp 0.6s ease-out forwards;
-        }
-      `}</style>
-
       <div className="container mx-auto px-4 relative z-10">
-        <div
-          ref={addToRefs}
-          className="opacity-0 translate-y-8 transition-all duration-700"
-        >
+        <div>
           <h1
             className={`${fluxgore.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white relative uppercase`}
           >
@@ -72,10 +24,7 @@ function Partners() {
           </h1>
         </div>
 
-        <div
-          ref={addToRefs}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12 md:gap-16 lg:gap-24 mt-8 sm:mt-12 lg:mt-16 opacity-0 translate-y-8 transition-all duration-700 delay-200"
-        >
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12 md:gap-16 lg:gap-24 mt-8 sm:mt-12 lg:mt-16">
           <div className="w-auto h-16 sm:h-20 lg:h-24 relative hover:scale-110 transition-transform duration-300">
             <Image
               src="/logos/dep.svg"
@@ -140,20 +89,9 @@ function Partners() {
               className="object-contain"
             />
           </div>
-          {/* <div className="w-auto h-16 sm:h-20 lg:h-24 relative hover:scale-110 transition-transform duration-300">
-            <Image
-              src="/logos/smp.png"
-              alt="SMP Logo"
-              fill
-              className="object-contain"
-            />
-          </div> */}
         </div>
 
-        <div
-          ref={addToRefs}
-          className="opacity-0 translate-y-8 transition-all duration-700 delay-500"
-        >
+        <div>
           <Button
             onClick={() => {
               const mail = "mailto:ftvs.partners@yandex.ru";
